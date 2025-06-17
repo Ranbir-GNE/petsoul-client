@@ -93,19 +93,19 @@ const Grid = () => {
   }, [pets, tabIndex]);
 
   return (
-    <div className="m-3 space-y-6">
+    <div className="m-3 space-y-6 ">
       {/* Pets Grid */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
         {pets.map((pet, index) => (
           <div
             key={index}
-            className="bg-gray-200 rounded-lg shadow-md p-4 flex items-center justify-between space-x-3"
+            className="bg-[#fffff0] rounded-lg shadow-md p-4 flex items-center justify-between space-x-3"
           >
             <div>
-              <p className="text-sm font-medium">Name: {pet.name}</p>
-              <p className="text-sm">Age: {pet.age}</p>
-              <p className="text-sm">Breed: {pet.breed}</p>
-              <p className="text-sm">Species: {pet.species}</p>
+              <p className="text-sm font-medium text-slate-800">Name: {pet.name}</p>
+              <p className="text-sm text-slate-700">Age: {pet.age}</p>
+              <p className="text-sm text-slate-700">Breed: {pet.breed}</p>
+              <p className="text-sm text-slate-700">Species: {pet.species}</p>
             </div>
             <div>
               <img
@@ -121,26 +121,28 @@ const Grid = () => {
       {/* Vaccination and Chart Section */}
       <div className="grid grid-cols-1 lg:grid-cols-4 gap-4">
         {/* Chart */}
-        <div className="bg-gray-200 p-4 rounded-lg shadow-md lg:col-span-3">
+        <div className="bg-[#fffff0] p-4 rounded-lg shadow-md lg:col-span-3">
           <ChartComponent />
         </div>
 
         {/* Vaccination Details */}
-        <div className="bg-gray-200 p-3 rounded-lg shadow-md">
+        <div className="bg-[#fffff0] p-3 rounded-lg shadow-md ">
           <Tabs
             selectedIndex={tabIndex}
             onSelect={(index) => setTabIndex(index)}
           >
-            <TabList className="flex space-x-2 overflow-x-auto">
+            <TabList className="flex space-x-2 overflow-x-auto ">
               {pets.map((pet, index) => (
                 <Tab
                   key={index}
                   className={({ selected }) =>
-                    `cursor-pointer py-1 px-2 text-sm rounded-lg shadow-sm transition ${selected ? "bg-blue-500 text-white" : "bg-white text-gray-800"
+                    `cursor-pointer py-1 px-2 text-sm rounded-lg shadow-sm transition ${selected
+                      ? "bg-blue-200 text-[#fffff0] px-4 py-2"
+                      : "bg-white text-slate-800 px-4 py-2"
                     }`
                   }
                 >
-                  {pet.name}
+                  <span className="px-2">{pet.name}</span>
                 </Tab>
               ))}
             </TabList>
@@ -153,16 +155,16 @@ const Grid = () => {
                         key={idx}
                         className="border p-3 rounded-lg bg-gray-50 space-y-1"
                       >
-                        <p className="font-semibold text-gray-800">
+                        <p className="font-semibold text-slate-800">
                           {record.vaccineName}
                         </p>
-                        <p className="text-gray-600 text-sm">
+                        <p className="text-slate-600 text-sm">
                           Date:{" "}
                           {new Date(
                             record.vaccinationDate
                           ).toLocaleDateString()}
                         </p>
-                        <p className="text-gray-600 text-sm">
+                        <p className="text-slate-600 text-sm">
                           Next Due Date:{" "}
                           {new Date(
                             record.nextVaccinationDate
@@ -179,7 +181,7 @@ const Grid = () => {
                       </div>
                     ))
                   ) : (
-                    <p className="text-gray-500">No vaccination records found.</p>
+                    <p className="text-slate-500">No vaccination records found.</p>
                   )}
                 </div>
               </TabPanel>

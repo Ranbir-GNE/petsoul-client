@@ -121,7 +121,7 @@ const LoginRegister = () => {
     }
     try {
       const response = await axios.post(
-        "http://localhost:3000/api/users/register",
+        `${API_BASE}/api/users/register`,
         {
           username: registerData.username,
           email: registerData.email,

@@ -28,7 +28,7 @@ const ViewProfile = () => {
   }, [fetchUser]);
 
   const toggleEdit = () => setIsEditing(!isEditing);
-  
+
   if (!userData) {
     return (
       <div className="flex items-center justify-center h-screen">
@@ -84,9 +84,9 @@ const ViewProfile = () => {
   };
 
   return (
-    <div className="relative flex flex-col md:flex-row p-4">
+    <div className="relative flex flex-col md:flex-row p-4 ">
       {/* Profile Details */}
-      <div className="flex-1 p-6 bg-white rounded-lg shadow-md">
+      <div className="flex-1 p-6 bg-[#fffff0] rounded-lg shadow-md">
         <div className="flex justify-between items-center mb-6">
           <h2 className="text-2xl font-bold">Profile</h2>
           <Button
@@ -139,12 +139,12 @@ const ViewProfile = () => {
       </div>
 
       {isEditing && (
-        <div className="fixed top-0 right-0 h-full w-full md:w-1/3 bg-white p-6 shadow-lg transform transition-transform duration-300 ease-in-out">
+        <div className="fixed top-0 right-0 h-full w-full md:w-1/3 bg-[#fffff0] p-6 shadow-lg transform transition-transform duration-300 ease-in-out">
           <div className="flex justify-between items-center mb-6">
             <h3 className="text-xl font-semibold">Edit Profile</h3>
             <Button
               onClick={toggleEdit}
-              className="flex items-center space-x-2 text-gray-600 hover:text-gray-800"
+              className="flex items-center bg-gray-500 space-x-2 text-gray-100 hover:text-gray-800  px-2 py-1 rounded-full hover:bg-gray-200 transition-colors"
             >
               <FaTimes />
             </Button>
@@ -167,13 +167,6 @@ const ViewProfile = () => {
               name="lastName"
               placeholder="Last Name"
               value={userData.lastName}
-              onChange={handleInputChange}
-            />
-            <Input
-              label="Email"
-              name="email"
-              placeholder="Email"
-              value={userData.email}
               onChange={handleInputChange}
             />
             <Input

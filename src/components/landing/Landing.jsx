@@ -8,7 +8,7 @@ import PetCarousel from "./PetCarousel";
 const Landing = () => {
   return (
     <>
-      <div className="flex flex-col space-y-20 px-6 md:px-20 lg:px-40 text-gray-800">
+      <div className="flex flex-col space-y-20 px-6 md:px-20 lg:px-40 text-gray-800 bg-[#355c7d]">
         <section>
           <PetAppHero />
         </section>

@@ -11,21 +11,29 @@ const API_BASE = import.meta.env.REACT_APP_API_BASE || "http://localhost:3000";
 const Navbar = ({ onMenuClick }) => {
   const [isLogin, setIsLogin] = useState(false);
   const [profilePicture, setProfilePicture] = useState(defaultProfile);
+  const [username, setUsername] = useState("");
   const navigate = useNavigate();
 
   const fetchUser = useCallback(async () => {
     const token = localStorage.getItem("key");
-    if (!token) return;
+    if (!token) {
+      setIsLogin(false);
+      setProfilePicture(defaultProfile);
+      setUsername("");
+      return;
+    }
 
     try {
       const { data } = await axios.get(`${API_BASE}/api/users/token/${token}`, {
         headers: { Authorization: `${token}` },
       });
       setProfilePicture(data.profilePicture || defaultProfile);
+      setUsername(data.username || "User");
       setIsLogin(true);
     } catch (error) {
-      console.error("Error fetching user data:", error.message);
       setIsLogin(false);
+      setProfilePicture(defaultProfile);
+      setUsername("");
       toast.error("Session expired. Please log in again.");
       navigate("/login");
       localStorage.removeItem("key");
@@ -37,12 +45,12 @@ const Navbar = ({ onMenuClick }) => {
   }, [fetchUser]);
 
   return (
-    <div className="bg-gray-900 text-white shadow-md w-full">
+    <div className="bg-gray-900 text-slate-100 shadow-md w-full">
       <div className="flex justify-between items-center px-4 py-2">
         {/* Left: Hamburger and Logo */}
         <div className="flex items-center space-x-4">
           <button
-            className="text-white text-xl md:hidden"
+            className="text-slate-100 text-xl md:hidden"
             onClick={onMenuClick}
           >
             <FaBars />
@@ -50,68 +58,37 @@ const Navbar = ({ onMenuClick }) => {
           <img src={logo} alt="logo" className="h-10 w-auto" />
         </div>
 
-        {/* Right: Nav links & profile */}
+        {/* Right: Nav links */}
         <ul className="flex items-center space-x-6">
           <li>
-            <button className="hover:text-blue-300 transition-colors">
+            <button className="hover:text-[#355c7d] transition-colors">
               Blogs
             </button>
           </li>
           <li>
-            <button className="hover:text-blue-300 transition-colors">
+            <button className="hover:text-[#355c7d] transition-colors">
               Community
             </button>
           </li>
-          {isLogin ? (
-            <li>
+          <li>
+            {isLogin ? (
               <div className="flex items-center space-x-2">
-                <span className="hidden sm:block text-sm text-gray-300">
-                  Welcome!
-                </span>
                 <img
                   src={profilePicture}
-                  alt="Profile"
-                  className="h-8 w-8 rounded-full object-cover border-2 border-blue-500"
+                  alt="profile"
+                  className="h-8 w-8 rounded-full object-cover border border-slate-300"
                 />
+                <span className="text-sm">Welcome, {username}!</span>
               </div>
-            </li>
-          ) : (
-            <li className="relative group">
-              <div className="flex items-center space-x-2 cursor-pointer">
-                <img
-                  src={profilePicture}
-                  alt="Profile"
-                  className="h-8 w-8 rounded-full object-cover border-2 border-blue-500"
-                />
-                <svg
-                  className="w-4 h-4 text-white"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                </svg>
-              </div>
-              <div className="absolute right-0 mt-2 w-32 bg-white rounded shadow-md hidden group-hover:block text-black z-10">
-                <button
-                  className="w-full px-4 py-2 text-left hover:bg-gray-100"
-                  onClick={() => navigate("/profile")}
-                >
-                  Profile
-                </button>
-                <button
-                  className="w-full px-4 py-2 text-left hover:bg-gray-100"
-                  onClick={() => {
-                    localStorage.removeItem("key");
-                    setIsLogin(false);
-                    navigate("/login");
-                  }}
-                >
-                  Logout
-                </button>
-              </div>
-            </li>
-          )}
+            ) : (
+              <button
+                className="bg-[#355c7d] hover:bg-[#2a4661] text-white px-4 py-1 rounded transition-colors"
+                onClick={() => navigate("/login")}
+              >
+                Login
+              </button>
+            )}
+          </li>
         </ul>
       </div>
     </div>
