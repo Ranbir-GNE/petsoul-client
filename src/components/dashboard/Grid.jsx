@@ -4,7 +4,7 @@ import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import "react-tabs/style/react-tabs.css";
 import ChartComponent from "./ChartComponent";
 import userPetContext from "../../context/UserPetContext";
-const API_BASE = import.meta.env.REACT_APP_API_BASE || "http://localhost:3000";
+const API_BASE = import.meta.env. VITE_APP_API_BASE  ;
 import defaultPet from "../../assets/cat.jpg"; // create this if not present
 
 const Grid = () => {

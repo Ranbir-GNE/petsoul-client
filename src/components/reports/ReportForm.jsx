@@ -4,7 +4,7 @@ import LoadingButton from "../dashboard/LoadingButton";
 import axios from "axios";
 import { toast } from "sonner";
 import useUserAndPetData from "../../hooks/useUserAndPetData";
-const API_BASE = import.meta.env.REACT_APP_API_BASE || "http://localhost:3000";
+const API_BASE = import.meta.env. VITE_APP_API_BASE  ;
 
 // Reusable input group component
 const InputGroup = ({ sectionName, data, onChange, columns = 2 }) => (

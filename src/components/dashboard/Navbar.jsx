@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 import { toast } from "sonner";
 import { FaBars } from "react-icons/fa";
 
-const API_BASE = import.meta.env.REACT_APP_API_BASE || "http://localhost:3000";
+const API_BASE = import.meta.env. VITE_APP_API_BASE  ;
 
 const Navbar = ({ onMenuClick }) => {
   const [isLogin, setIsLogin] = useState(false);

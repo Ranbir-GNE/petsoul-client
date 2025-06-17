@@ -4,7 +4,7 @@ import { Button } from "../ui/button";
 import pet1 from "../../assets/pet1.jpg"; // Default pet image
 import { toast } from "sonner";
 import useUserAndPetData from "../../hooks/useUserAndPetData"; // Adjust the import path as needed
-const API_BASE = import.meta.env.REACT_APP_API_BASE || "http://localhost:3000";
+const API_BASE = import.meta.env. VITE_APP_API_BASE  ;
 
 
 const ViewPetProfile = () => {

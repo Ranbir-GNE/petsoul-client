@@ -3,7 +3,7 @@ import axios from "axios";
 import { Input } from "../ui/input";
 import { toast } from "sonner";
 import useUserAndPetData from "../../hooks/useUserAndPetData";
-const API_BASE = import.meta.env.REACT_APP_API_BASE || "http://localhost:3000";
+const API_BASE = import.meta.env. VITE_APP_API_BASE  ;
 
 
 const AddRecordForm = ({ onSubmit }) => {

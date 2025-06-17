@@ -3,7 +3,7 @@ import axios from "axios";
 import { Input } from "../ui/input";
 import LoadingButton from "../dashboard/LoadingButton";
 import { toast } from "sonner";
-const API_BASE = import.meta.env.REACT_APP_API_BASE || "http://localhost:3000";
+const API_BASE = import.meta.env. VITE_APP_API_BASE  ;
 const UPLOAD_PRESET = import.meta.env.VITE_UPLOAD_PRESET || "default_preset";
 const CLOUD_NAME = import.meta.env.VITE_CLOUD_NAME || "default_cloud";
 

@@ -15,7 +15,7 @@ import {
 } from "chart.js";
 import axios from "axios";
 import LoadingSpinner from "./LoadingSpinner";
-const API_BASE = import.meta.env.REACT_APP_API_BASE || "http://localhost:3000";
+const API_BASE = import.meta.env. VITE_APP_API_BASE  ;
 
 
 ChartJS.register(

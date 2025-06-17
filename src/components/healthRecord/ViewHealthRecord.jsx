@@ -5,7 +5,7 @@ import { Button } from "../ui/button";
 import useUserAndPetData from "../../hooks/useUserAndPetData";
 import { toast } from "sonner";
 import pet1 from "../../assets/pet1.jpg";
-const API_BASE = import.meta.env.REACT_APP_API_BASE || "http://localhost:3000";
+const API_BASE = import.meta.env. VITE_APP_API_BASE  ;
 
 // Helper function to safely get nested values
 const safeGet = (obj, path, defaultValue = "N/A") => {

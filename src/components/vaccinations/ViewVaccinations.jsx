@@ -4,7 +4,7 @@ import { FaSearch, FaTimes, FaEdit, FaTrash } from "react-icons/fa";
 import { Button } from "../ui/button";
 import { Input } from "../ui/input";
 import useUserAndPetData from "../../hooks/useUserAndPetData";
-const API_BASE = import.meta.env.REACT_APP_API_BASE || "http://localhost:3000";
+const API_BASE = import.meta.env. VITE_APP_API_BASE  ;
 
 
 const Lightbox = ({ vaccination, onClose, onEdit, onDelete }) => {

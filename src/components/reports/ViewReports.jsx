@@ -3,7 +3,7 @@ import axios from "axios";
 import { FaSearch, FaTimes } from "react-icons/fa";
 import { Button } from "../ui/button";
 import useUserAndPetData from "../../hooks/useUserAndPetData";
-const API_BASE = import.meta.env.REACT_APP_API_BASE || "http://localhost:3000";
+const API_BASE = import.meta.env. VITE_APP_API_BASE  ;
 
 
 // Subcomponents for modularity
