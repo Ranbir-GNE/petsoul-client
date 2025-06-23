@@ -97,14 +97,14 @@ const ViewProfile = () => {
           <h2 className="text-2xl font-bold">Profile</h2>
           <Button
             onClick={toggleEdit}
-            className="flex items-center space-x-2 bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition-colors"
+            className="flex items-center space-x-2 bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-white hover:text-blue-500 border transition"
           >
             <FaEdit />
             <span>Edit</span>
           </Button>
         </div>
         <div className="grid grid-cols-2 gap-6">
-          <div className="col-span-2 flex justify-center">
+          <div className="col-span-2 flex justify-center z-50 ">
             <img
               src={userData.profilePicture || profile}
               onError={(e) => (e.target.src = profile)}
@@ -192,7 +192,7 @@ const ViewProfile = () => {
               <Button
                 type="button"
                 onClick={handleDelete}
-                className="flex items-center space-x-2 bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600"
+                className="flex items-center space-x-2 bg-red-500 text-white px-4 py-2 rounded-md hover:bg-white hover:text-red-500 transition-colors border"
                 disabled={isSaving}
               >
                 <FaTrash />
@@ -200,7 +200,7 @@ const ViewProfile = () => {
               </Button>
               <Button
                 type="submit"
-                className="flex items-center space-x-2 bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600"
+                className="ext-white bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-500 border-none px-6 py-2 rounded-lg shadow-md hover:scale-105 transition font-semibold text-white"
                 disabled={isSaving}
               >
                 {isSaving ? (

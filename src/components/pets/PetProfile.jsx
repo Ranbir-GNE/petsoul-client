@@ -4,11 +4,11 @@ import { Button } from "../ui/button";
 import pet1 from "../../assets/pet1.jpg"; // Default pet image
 import { toast } from "sonner";
 import useUserAndPetData from "../../hooks/useUserAndPetData"; // Adjust the import path as needed
-const API_BASE = import.meta.env. VITE_APP_API_BASE  ;
+const API_BASE = import.meta.env.VITE_APP_API_BASE;
 
 
 const ViewPetProfile = () => {
-  const { pets, isLoading, error, refetchPets } = useUserAndPetData(); 
+  const { pets, isLoading, error, refetchPets } = useUserAndPetData();
   const [selectedPet, setSelectedPet] = useState(null);
   const [isEditing, setIsEditing] = useState(false);
   const [editedPet, setEditedPet] = useState(null);
@@ -68,11 +68,11 @@ const ViewPetProfile = () => {
   return (
     <div className="p-4 ">
       <h2 className="text-2xl font-bold mb-4">Pets</h2>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
         {pets.map((pet) => (
           <div
             key={pet._id}
-            className="bg-white shadow-md rounded-lg p-4 cursor-pointer"
+            className="bg-white shadow-md rounded-lg p-4 cursor-pointer hover:bg-gray-200 transition hover:scale-105"
             onClick={() => {
               setSelectedPet(pet);
               setEditedPet(pet); // Initialize the edit form with pet details
@@ -82,7 +82,7 @@ const ViewPetProfile = () => {
               <img
                 src={pet?.profilePicture || pet1}
                 alt="Pet Profile Picture"
-                className="w-44 h-44 rounded-full"
+                className="w-44 h-44 rounded-full object-cover shadow-md"
               />
             </div>
             <div className="text-center">
@@ -96,14 +96,14 @@ const ViewPetProfile = () => {
       </div>
 
       {selectedPet && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex itemsnp-center justify-center z-50">
-          <div className="bg-white p-6 w-full max-w-lg rounded-lg shadow-lg relative">
+        <div className="fixed inset-0 bg-black/70 flex items-center justify-center z-50 align-center">
+          <div className="bg-white p-8 w-full max-w-lg rounded-lg shadow-lg relative ">
             <Button
               onClick={() => {
                 setSelectedPet(null);
                 setIsEditing(false);
               }}
-              className="absolute top-2 right-2 bg-red-500 text-white"
+              className="absolute top-2 right-2 bg-red-500 text-white hover:text-red-500 hover:bg-white transition border border-red-500"
             >
               Close
             </Button>
@@ -115,7 +115,7 @@ const ViewPetProfile = () => {
                   name="name"
                   value={editedPet?.name || ""}
                   onChange={handleEditChange}
-                  className="w-full p-2 border rounded"
+                  className="p-2 border rounded"
                   placeholder="Pet Name"
                 />
                 <input
@@ -147,18 +147,21 @@ const ViewPetProfile = () => {
                   <option value="Fish">Fish</option>
                   <option value="Other">Other</option>
                 </select>
-                <Button
-                  onClick={handleEditPet}
-                  className="bg-blue-500 text-white"
-                >
-                  Save
-                </Button>
-                <Button
-                  onClick={() => setIsEditing(false)}
-                  className="bg-gray-500 text-white"
-                >
-                  Cancel
-                </Button>
+                <div className="flex space-x-4">
+                  <Button
+                    onClick={handleEditPet}
+                    className="bg-blue-500 text-white hover:text-blue-500 hover:bg-white transition border border-blue-500"
+                  >
+                    Save
+                  </Button>
+                  <Button
+                    onClick={() => setIsEditing(false)}
+                    className="bg-gray-500 text-white hover:text-gray-500 hover:bg-white transition border border-gray-500"
+                  >
+                    Cancel
+                  </Button>
+                </div>
+
               </div>
             ) : (
               <div className="text-left space-y-4">
@@ -177,13 +180,13 @@ const ViewPetProfile = () => {
                 <div className="flex space-x-4">
                   <Button
                     onClick={() => setIsEditing(true)}
-                    className="bg-blue-500 text-white"
+                    className="bg-blue-500 text-white hover:text-blue-500 hover:bg-white transition border border-blue-500"
                   >
                     Edit
                   </Button>
                   <Button
                     onClick={() => handleDeletePet(selectedPet._id)}
-                    className="bg-red-500 text-white"
+                    className="bg-red-500 text-white hover:text-red-500 hover:bg-white transition border border-red-500"
                   >
                     Delete
                   </Button>

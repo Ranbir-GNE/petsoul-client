@@ -3,7 +3,7 @@ import axios from "axios";
 import { FaSearch, FaTimes } from "react-icons/fa";
 import { Button } from "../ui/button";
 import useUserAndPetData from "../../hooks/useUserAndPetData";
-const API_BASE = import.meta.env. VITE_APP_API_BASE  ;
+const API_BASE = import.meta.env.VITE_APP_API_BASE;
 
 
 // Subcomponents for modularity
@@ -53,11 +53,11 @@ const LabTests = ({ laboratoryTests }) => (
 );
 
 const Lightbox = ({ report, onClose }) => (
-  <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
+  <div className="fixed inset-0 bg-black/70 flex items-center justify-center z-50 align-center">
     <div className="bg-white p-6 rounded-lg shadow-lg max-w-3xl w-full">
       <div className="flex justify-between items-center mb-4">
         <h2 className="text-xl font-bold">Report Details</h2>
-        <Button onClick={onClose} className="text-red-500 hover:text-red-700">
+        <Button onClick={onClose} className="text-white bg-red-500 hover:text-red-500 hover:bg-white border transition ">
           <FaTimes />
         </Button>
       </div>
@@ -134,18 +134,18 @@ const ViewReports = () => {
         ) : error ? (
           <p>Error: {error}</p>
         ) : (
-          <div className="grid grid-cols-4 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
             {pets.map((pet) => (
               <div
                 key={pet._id}
-                className={`flex flex-col items-center space-y-2 bg-gray-100 p-4 rounded-lg cursor-pointer hover:shadow-md transition-shadow ${selectedPetId === pet._id ? "bg-gray-200 p4 rounded-lg" : ""
+                className={`flex flex-col items-center space-y-2 bg-gray-100 bg-white shadow-md rounded-lg p-4 cursor-pointer hover:bg-gray-200 transition hover:scale-105 p-4 rounded-lg cursor-pointer hover:shadow-md ${selectedPetId === pet._id ? "bg-red-200 p4 rounded-lg" : ""
                   }`}
                 onClick={() => handlePetClick(pet._id)}
               >
                 <img
                   src={pet.profilePicture || "https://via.placeholder.com/150"}
                   alt={`${pet.name}'s profile`}
-                  className="w-20 h-20 rounded-full"
+                  className="w-44 h-44 rounded-full object-cover shadow-md"
                 />
                 <p className="text-lg font-medium">{pet.name}</p>
                 <Button className="text-sm bg-blue-500 text-white px-3 py-1 rounded hover:bg-blue-600 transition">
@@ -172,11 +172,8 @@ const ViewReports = () => {
                 onClick={() => handleReportClick(report)}
               >
                 <p>
-                  <strong>Created At:</strong>{" "}
+                  <strong>Date:</strong>{" "}
                   {new Date(report.createdAt).toLocaleString()}
-                </p>
-                <p>
-                  <strong>Report ID:</strong> {report._id}
                 </p>
               </li>
             ))}

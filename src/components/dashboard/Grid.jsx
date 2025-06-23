@@ -4,24 +4,52 @@ import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import "react-tabs/style/react-tabs.css";
 import ChartComponent from "./ChartComponent";
 import userPetContext from "../../context/UserPetContext";
-const API_BASE = import.meta.env.VITE_APP_API_BASE;
 import defaultPet from "../../assets/cat.jpg";
 import userContext from "../../context/UserContext";
+
+const API_BASE = import.meta.env.VITE_APP_API_BASE;
 
 const Grid = () => {
   const [pets, setPets] = useState([]);
   const [vaccinationData, setVaccinationData] = useState({});
   const [fetchedPetIds, setFetchedPetIds] = useState(new Set());
-  const userPetData = useContext(userPetContext);
   const [tabIndex, setTabIndex] = useState(0);
   const [addPets, setAddPets] = useState(false);
-  const authContext = useContext(userContext);
+  const [userData, setUserData] = useState(null);
 
-  // Get userId directly from context
-  const userId = authContext?.userData?._id;
+  const userPetData = useContext(userPetContext);
+  const authContext = useContext(userContext);
+  const userId = authContext.userData?._id;
+
+  const fetchUserData = async () => {
+    const token = localStorage.getItem("key");
+    if (!token) {
+      console.error("No token found in localStorage");
+      return;
+    }
+    try {
+      const response = await axios.get(`${API_BASE}/api/users/token/${token}`, {
+        headers: { Authorization: token },
+      });
+      if (!response.data || !response.data._id) {
+        console.error("Invalid user data received:", response.data);
+        return;
+      }
+      console.log("User data fetched successfully:", response.data);
+      authContext.setUserData(response.data);
+      setUserData(response.data);
+    } catch (error) {
+      console.error("Error fetching user data:", error.message);
+    }
+  };
+
+  useEffect(() => {
+    fetchUserData();
+  }, []);
 
   const fetchPets = async () => {
     const token = localStorage.getItem("key");
+    const userId = userData?._id || authContext.userData?._id;
     if (!userId) {
       console.error("User ID not found");
       return;

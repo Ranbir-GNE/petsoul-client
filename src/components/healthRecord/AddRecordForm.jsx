@@ -179,7 +179,7 @@ const AddRecordForm = ({ onSubmit }) => {
             <button
               type="button"
               onClick={() => handleArrayChange("medicalHistory", field, "")}
-              className="text-blue-500 text-sm mt-1"
+              className="text-blue-500 text-sm mt-1 hover:underline"
             >
               + Add More
             </button>
@@ -247,7 +247,7 @@ const AddRecordForm = ({ onSubmit }) => {
           onClick={() =>
             handleArrayChange("additionalFields", "behavioralNotes", "")
           }
-          className="text-blue-500 text-sm mt-1"
+          className="text-blue-500 text-sm mt-1 hover:underline"
         >
           + Add More
         </button>
@@ -256,7 +256,7 @@ const AddRecordForm = ({ onSubmit }) => {
       <button
         type="submit"
         disabled={isSubmitting}
-        className="w-full py-2 px-4 bg-indigo-600 text-white font-semibold rounded-md shadow-sm hover:bg-indigo-500 disabled:opacity-50"
+        className="text-white bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-500 border-none px-6 py-2 rounded-lg shadow-md hover:scale-105 transition font-semibold"
       >
         {isSubmitting ? "Submitting..." : "Submit Health Record"}
       </button>

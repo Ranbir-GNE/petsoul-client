@@ -213,7 +213,7 @@ const AddVaccinationForm = ({ onSubmit }) => {
         type="submit"
         isLoading={isLoading}
         disabled={isLoading}
-        className="w-full py-2 px-4 bg-indigo-600 text-white font-semibold rounded-md shadow-sm hover:bg-indigo-500 focus:outline-none"
+        className="text-white bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-500 border-none px-6 py-2 rounded-lg shadow-md hover:scale-105 transition font-semibold"
       >
         Add Vaccination
       </LoadingButton>

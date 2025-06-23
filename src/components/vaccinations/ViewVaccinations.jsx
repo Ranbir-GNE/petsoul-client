@@ -4,7 +4,7 @@ import { FaSearch, FaTimes, FaEdit, FaTrash } from "react-icons/fa";
 import { Button } from "../ui/button";
 import { Input } from "../ui/input";
 import useUserAndPetData from "../../hooks/useUserAndPetData";
-const API_BASE = import.meta.env. VITE_APP_API_BASE  ;
+const API_BASE = import.meta.env.VITE_APP_API_BASE;
 
 
 const Lightbox = ({ vaccination, onClose, onEdit, onDelete }) => {
@@ -22,79 +22,94 @@ const Lightbox = ({ vaccination, onClose, onEdit, onDelete }) => {
   };
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
+    <div className="fixed inset-0 bg-black/70 flex items-center justify-center z-50 align-center">
       <div className="bg-white p-6 rounded-lg shadow-lg max-w-lg w-full">
         <div className="flex justify-between items-center mb-4">
           <h2 className="text-xl font-bold">
             {isEditing ? "Edit Vaccination" : "Vaccination Details"}
           </h2>
-          <Button onClick={onClose} className="text-red-500 hover:text-red-700">
+          <Button onClick={onClose} className="text-white bg-red-500 hover:text-red-500 hover:bg-white border">
             <FaTimes />
           </Button>
         </div>
         {isEditing ? (
           <div className="space-y-4">
-            <select
-              name="vaccinationName"
-              value={editedVaccination.vaccinationName}
-              onChange={handleInputChange}
-              className="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md"
-            >
-              <option value="rabies">Rabies</option>
-              <option value="dhpp">DHPP</option>
-              <option value="corona">Corona</option>
-              <option value="leptospirosis">leptospirosis</option>
-              <option value="lyme">lyme</option>
-              <option value="bordetella">bordetella</option>
-              <option value="giardia">giardia</option>
-              <option value="feline leukemia">feline leukemia</option>
-              <option value="feline distemper">feline distemper</option>
-              <option value="feline rabies">feline rabies</option>
-              <option value="feline calicivirus">feline calicivirus</option>
-              <option value="feline chlamydia">feline chlamydia</option>
-            </select>
-            <select
-              label="Vaccination Type"
-              name="vaccinationType"
-              value={editedVaccination.vaccinationType}
-              onChange={handleInputChange}
-            >
-              <option value="one-time">One Time</option>
-              <option value="annual">Annual</option>
-              <option value="bi-annual">Bi Annual</option>
-              <option value="tri-annual">Tri Annual</option>
-            </select>
-            <Input
-              label="Vaccination Date"
-              name="vaccinationDate"
-              type="date"
-              value={new Date(editedVaccination.vaccinationDate).toISOString().split("T")[0]}
-              onChange={handleInputChange}
-            />
-            <Input
-              label="Next Vaccination Date"
-              name="nextVaccinationDate"
-              type="date"
-              value={editedVaccination.nextVaccinationDate.split("T")[0]}
-              onChange={handleInputChange}
-            />
             <div>
-              <label className="block text-sm font-medium text-gray-700">
-                Vaccine Status
-              </label>
+              <label className="block text-sm font-medium text-gray-700 mb-1">Vaccination Name</label>
+              <select
+                name="vaccinationName"
+                value={editedVaccination.vaccinationName}
+                onChange={handleInputChange}
+                className="mt-1 block w-full pl-3 pr-10 py-2 text-base border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-blue-400 sm:text-sm rounded-lg bg-gray-50 shadow-sm"
+              >
+                <option value="rabies">Rabies</option>
+                <option value="dhpp">DHPP</option>
+                <option value="corona">Corona</option>
+                <option value="leptospirosis">Leptospirosis</option>
+                <option value="lyme">Lyme</option>
+                <option value="bordetella">Bordetella</option>
+                <option value="giardia">Giardia</option>
+                <option value="feline leukemia">Feline Leukemia</option>
+                <option value="feline distemper">Feline Distemper</option>
+                <option value="feline rabies">Feline Rabies</option>
+                <option value="feline calicivirus">Feline Calicivirus</option>
+                <option value="feline chlamydia">Feline Chlamydia</option>
+              </select>
+            </div>
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-1">Vaccination Type</label>
+              <select
+                name="vaccinationType"
+                value={editedVaccination.vaccinationType}
+                onChange={handleInputChange}
+                className="mt-1 block w-full pl-3 pr-10 py-2 text-base border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-blue-400 sm:text-sm rounded-lg bg-gray-50 shadow-sm"
+              >
+                <option value="one-time">One Time</option>
+                <option value="annual">Annual</option>
+                <option value="bi-annual">Bi Annual</option>
+                <option value="tri-annual">Tri Annual</option>
+              </select>
+            </div>
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-1">Vaccination Date</label>
+              <Input
+                name="vaccinationDate"
+                type="date"
+                value={new Date(editedVaccination.vaccinationDate).toISOString().split("T")[0]}
+                onChange={handleInputChange}
+                className="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400 bg-gray-50 shadow-sm"
+              />
+            </div>
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-1">Next Vaccination Date</label>
+              <Input
+                name="nextVaccinationDate"
+                type="date"
+                value={editedVaccination.nextVaccinationDate.split("T")[0]}
+                onChange={handleInputChange}
+                className="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400 bg-gray-50 shadow-sm"
+              />
+            </div>
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-1">Vaccine Status</label>
               <select
                 name="vaccineStatus"
                 value={editedVaccination.vaccineStatus}
                 onChange={handleInputChange}
-                className="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md"
+                className="mt-1 block w-full pl-3 pr-10 py-2 text-base border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-blue-400 sm:text-sm rounded-lg bg-gray-50 shadow-sm"
               >
                 <option value="Pending">Pending</option>
                 <option value="Completed">Completed</option>
               </select>
             </div>
-            <Button onClick={saveEdit} className="bg-green-500 text-white">
-              Save
-            </Button>
+            <div className="flex justify-end">
+              <Button onClick={() => setIsEditing(false)} className="text-white bg-gray-500 hover:text-gray-500 hover:bg-white border mr-2">
+                Cancel
+              </Button>
+              <Button onClick={saveEdit} className="text-white bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-500 border-none px-6 py-2 rounded-lg shadow-md hover:scale-105 transition font-semibold">
+                Save
+              </Button>
+            </div>
           </div>
         ) : (
           <div className="space-y-4">
@@ -118,14 +133,14 @@ const Lightbox = ({ vaccination, onClose, onEdit, onDelete }) => {
             <div className="flex space-x-4">
               <Button
                 onClick={() => setIsEditing(true)}
-                className="bg-blue-500 text-white"
+                className="text-white bg-blue-500 hover:text-blue-500 hover:bg-white border"
               >
                 <FaEdit className="mr-2" />
                 Edit
               </Button>
               <Button
                 onClick={() => onDelete(vaccination._id)}
-                className="bg-red-500 text-white"
+                className="text-white bg-red-500 hover:text-red-500 hover:bg-white border"
               >
                 <FaTrash className="mr-2" />
                 Delete
@@ -227,17 +242,17 @@ const ViewVaccination = () => {
         {isLoadingPets ? (
           <p>Loading pets...</p>
         ) : (
-          <div className="grid grid-cols-4 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
             {pets.map((pet) => (
               <div
                 key={pet._id}
-                className="flex flex-col items-center space-y-2 bg-gray-100 p-4 rounded-lg cursor-pointer hover:shadow-md transition-shadow"
+                className="flex flex-col items-center space-y-2 bg-gray-100 bg-white shadow-md rounded-lg p-4 cursor-pointer hover:bg-gray-200 transition hover:scale-105 p-4 rounded-lg cursor-pointer hover:shadow-md"
                 onClick={() => handlePetClick(pet._id)}
               >
                 <img
                   src={pet.profilePicture || "https://via.placeholder.com/150"}
                   alt={`${pet.name}'s profile`}
-                  className="w-20 h-20 rounded-full"
+                  className="w-44 h-44 rounded-full object-cover shadow-md"
                 />
                 <p className="text-lg font-medium">{pet.name}</p>
                 <Button className="text-sm bg-blue-500 text-white px-3 py-1 rounded hover:bg-blue-600 transition">

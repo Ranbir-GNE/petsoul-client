@@ -5,7 +5,7 @@ import { Button } from "../ui/button";
 import useUserAndPetData from "../../hooks/useUserAndPetData";
 import { toast } from "sonner";
 import pet1 from "../../assets/pet1.jpg";
-const API_BASE = import.meta.env. VITE_APP_API_BASE  ;
+const API_BASE = import.meta.env.VITE_APP_API_BASE;
 
 // Helper function to safely get nested values
 const safeGet = (obj, path, defaultValue = "N/A") => {
@@ -175,13 +175,13 @@ const ViewRecord = () => {
           {pets.map((pet) => (
             <div
               key={pet._id}
-              className="flex flex-col items-center space-y-3 bg-gray-50 p-2 rounded-lg cursor-pointer hover:shadow-lg transition-all duration-200 hover:bg-gray-100"
+              className="flex flex-col items-center space-y-2 bg-gray-100 bg-white shadow-md rounded-lg p-4 cursor-pointer hover:bg-gray-200 transition hover:scale-105 p-4 rounded-lg cursor-pointer hover:shadow-md"
               onClick={() => fetchPetRecord(pet._id)}
             >
               <img
                 src={pet.profilePicture || pet1}
                 alt={`${pet.name}'s profile`}
-                className="w-16 h-16 rounded-full object-cover"
+                className="w-44 h-44 rounded-full object-cover shadow-md"
               />
               <p className="text-lg font-medium text-center">{pet.name}</p>
               <Button
@@ -207,15 +207,16 @@ const ViewRecord = () => {
           {selectedRecord && !isEditing && (
             <div className="flex gap-2">
               <Button
+                disabled
                 onClick={startEditing}
-                className="bg-yellow-500 hover:bg-yellow-600 text-white"
+                className="bg-yellow-500 hover:bg-white text-white hover:text-yellow-500 border transition"
               >
                 <FaEdit className="mr-2" />
                 Edit
               </Button>
               <Button
                 onClick={handleDeleteRecord}
-                className="bg-red-500 hover:bg-red-600 text-white"
+                className="bg-red-500 hover:bg-white text-white hover:text-red-500 border transition"
               >
                 <FaTrash className="mr-2" />
                 Delete
