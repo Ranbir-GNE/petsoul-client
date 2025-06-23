@@ -16,7 +16,7 @@ const ReportPage = () => {
           onClick={handleToggleVisibility}
           className="mb-4 p-2 bg-blue-500 text-white rounded hover:bg-white hover:text-blue-500 transition duration-300 hover:scale-105 focus:outline-none focus:ring-2 focus:ring-blue-300"
         >
-          {isVisible ? "Hide Report Form" : "Show Report Form"}
+          {isVisible ? "Hide Form" : "Add New Pet"}
         </button>
         {isVisible && <AddPetForm />}
       </div>
