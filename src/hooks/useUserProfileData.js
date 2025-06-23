@@ -1,35 +1,28 @@
-import { useState, useCallback } from "react";
+import { useState, useContext, useEffect } from "react";
 import axios from "axios";
-const API_BASE = import.meta.env. VITE_APP_API_BASE  ;
+const API_BASE = import.meta.env.VITE_APP_API_BASE;
 const UPLOAD_PRESET = import.meta.env.VITE_UPLOAD_PRESET;
 const CLOUD_NAME = import.meta.env.VITE_CLOUD_NAME;
-
+import userContext from "../context/UserContext";
 
 export function useUserProfile() {
+    const authContext = useContext(userContext);
     const [userData, setUserData] = useState(null);
 
-    const fetchUser = useCallback(async () => {
-        const token = localStorage.getItem("key");
-        if (!token) return null;
-        try {
-            const response = await axios.get(
-                `${API_BASE}/api/users/token/${token}`,
-                { headers: { Authorization: token } }
-            );
-            setUserData(response.data);
-            return response.data;
-        } catch (error) {
-            console.error(error);
-            return null;
+    const userId = authContext?.userData?._id;
+
+    useEffect(() => {
+        if (authContext?.userData) {
+            setUserData(authContext.userData);
         }
-    }, []);
+    }, [authContext]);
 
     const updateUser = async (updatedData) => {
         const token = localStorage.getItem("key");
         if (!token) throw new Error("Token not found");
         try {
             const response = await axios.put(
-                `${API_BASE}/api/users/${updatedData._id}`,
+                `${API_BASE}/api/users/${userId}`,
                 updatedData,
                 { headers: { Authorization: token } }
             );
@@ -40,7 +33,7 @@ export function useUserProfile() {
         }
     };
 
-    const deleteUser = async (userId) => {
+    const deleteUser = async () => {
         const token = localStorage.getItem("key");
         if (!token) throw new Error("Token not found");
         try {
@@ -58,10 +51,7 @@ export function useUserProfile() {
         try {
             const imageFormData = new FormData();
             imageFormData.append("file", file);
-            imageFormData.append(
-                "upload_preset",
-                UPLOAD_PRESET
-            );
+            imageFormData.append("upload_preset", UPLOAD_PRESET);
             const response = await axios.post(
                 `https://api.cloudinary.com/v1_1/${CLOUD_NAME}/upload`,
                 imageFormData
@@ -72,5 +62,5 @@ export function useUserProfile() {
         }
     };
 
-    return { userData, setUserData, fetchUser, updateUser, deleteUser, uploadImage };
+    return { userData, setUserData, updateUser, deleteUser, uploadImage, userId };
 }

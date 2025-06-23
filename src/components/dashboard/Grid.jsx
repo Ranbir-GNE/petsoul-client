@@ -1,50 +1,40 @@
-import React, { useContext, useEffect, useState, useCallback } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import axios from "axios";
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import "react-tabs/style/react-tabs.css";
 import ChartComponent from "./ChartComponent";
 import userPetContext from "../../context/UserPetContext";
-const API_BASE = import.meta.env. VITE_APP_API_BASE  ;
-import defaultPet from "../../assets/cat.jpg"; // create this if not present
+const API_BASE = import.meta.env.VITE_APP_API_BASE;
+import defaultPet from "../../assets/cat.jpg";
+import userContext from "../../context/UserContext";
 
 const Grid = () => {
-  const [userData, setUserData] = useState();
   const [pets, setPets] = useState([]);
   const [vaccinationData, setVaccinationData] = useState({});
   const [fetchedPetIds, setFetchedPetIds] = useState(new Set());
   const userPetData = useContext(userPetContext);
   const [tabIndex, setTabIndex] = useState(0);
+  const [addPets, setAddPets] = useState(false);
+  const authContext = useContext(userContext);
 
-  const fetchUserData = useCallback(async () => {
-    const token = localStorage.getItem("key");
-    if (!token) return;
-
-    try {
-      const { data } = await axios.get(`${API_BASE}/api/users/token/${token}`, {
-        headers: { Authorization: token }
-      });
-      setUserData(data);
-    } catch (error) {
-      console.error("Error fetching user data:", error.message);
-    }
-  }, []);
+  // Get userId directly from context
+  const userId = authContext?.userData?._id;
 
   const fetchPets = async () => {
     const token = localStorage.getItem("key");
-    const userId = userData?._id;
     if (!userId) {
       console.error("User ID not found");
       return;
     }
-
     try {
       const response = await axios.get(
         `${API_BASE}/api/pets/owner/${userId}`,
         { headers: { Authorization: token } }
       );
       if (response.data.length === 0) {
-        console.log("No pets found");
+        setAddPets(true);
       } else {
+        setAddPets(false);
         setPets(response.data);
         userPetData.setPets(response.data);
       }
@@ -55,7 +45,6 @@ const Grid = () => {
 
   const fetchVaccinationData = async (petId) => {
     if (fetchedPetIds.has(petId)) return;
-
     const token = localStorage.getItem("key");
     if (!token || !petId) {
       console.error("Missing token or petId");
@@ -77,14 +66,10 @@ const Grid = () => {
   };
 
   useEffect(() => {
-    fetchUserData();
-  }, [fetchUserData]);
-
-  useEffect(() => {
-    if (userData?._id) {
+    if (userId) {
       fetchPets();
     }
-  }, [userData?._id]);
+  }, [userId]);
 
   useEffect(() => {
     if (pets.length > 0 && pets[tabIndex]) {
@@ -116,6 +101,17 @@ const Grid = () => {
             </div>
           </div>
         ))}
+        {addPets && (
+          <div className="bg-[#fffff0] rounded-lg shadow-md p-4 flex items-center justify-center space-x-3">
+            <p className="text-sm font-medium text-slate-800">No pets found. Please add a pet.</p>
+            <button
+              onClick={() => userPetData.setAddPet(true)}
+              className="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 transition"
+            >
+              Add Pet
+            </button>
+          </div>
+        )}
       </div>
 
       {/* Vaccination and Chart Section */}

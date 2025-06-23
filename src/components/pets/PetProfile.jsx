@@ -8,7 +8,7 @@ const API_BASE = import.meta.env. VITE_APP_API_BASE  ;
 
 
 const ViewPetProfile = () => {
-  const { pets, isLoading, error, refetchPets } = useUserAndPetData(); // Assuming refetchPets can re-fetch the pets data
+  const { pets, isLoading, error, refetchPets } = useUserAndPetData(); 
   const [selectedPet, setSelectedPet] = useState(null);
   const [isEditing, setIsEditing] = useState(false);
   const [editedPet, setEditedPet] = useState(null);
@@ -27,7 +27,6 @@ const ViewPetProfile = () => {
       );
       toast.success("Pet details updated successfully");
       setIsEditing(false);
-      refetchPets(); // Refresh the pets list
     } catch (error) {
       console.error("Error editing pet:", error.message);
       toast.error("Failed to update pet details");

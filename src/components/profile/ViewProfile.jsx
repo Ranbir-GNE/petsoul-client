@@ -1,33 +1,32 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useContext } from "react";
 import { useUserProfile } from "../../hooks/useUserProfileData";
 import { FaEdit, FaTrash, FaSave, FaTimes } from "react-icons/fa";
 import profile from "../../assets/profilePicture.jpg";
 import { Input } from "../ui/input";
 import { Button } from "../ui/button";
-import userContext from "../../context/UserContext";
 import { toast } from "sonner";
 import { useNavigate } from "react-router-dom";
+import userContext from "../../context/UserContext";
+
 
 const ViewProfile = () => {
-  const authContext = useContext(userContext);
   const [isEditing, setIsEditing] = useState(false);
-  const navigate = useNavigate();
   const [profilePictureFile, setProfilePictureFile] = useState(null);
+  const [isSaving, setIsSaving] = useState(false);
+  const navigate = useNavigate();
 
   const {
     userData,
     setUserData,
-    fetchUser,
     updateUser,
     deleteUser,
     uploadImage,
+    userId,
   } = useUserProfile();
 
-  useEffect(() => {
-    fetchUser();
-  }, [fetchUser]);
+  const authContext = useContext(userContext);
 
-  const toggleEdit = () => setIsEditing(!isEditing);
+  const toggleEdit = () => setIsEditing((prev) => !prev);
 
   if (!userData) {
     return (
@@ -51,6 +50,7 @@ const ViewProfile = () => {
 
   const handleSave = async (e) => {
     e.preventDefault();
+    setIsSaving(true);
     let imageUrl = userData.profilePicture;
 
     if (profilePictureFile) {
@@ -58,6 +58,7 @@ const ViewProfile = () => {
         imageUrl = await uploadImage(profilePictureFile);
       } catch (error) {
         toast.error("Error uploading image");
+        setIsSaving(false);
         return;
       }
     }
@@ -66,16 +67,21 @@ const ViewProfile = () => {
       const updatedData = { ...userData, profilePicture: imageUrl };
       await updateUser(updatedData);
       toast.success("Profile updated successfully");
+      setUserData(updatedUser);
+      if (authContext?.setUserData) {
+        authContext.setUserData(updatedUser);
+      }
     } catch (error) {
       toast.error("Failed to update user profile");
     } finally {
+      setIsSaving(false);
       setIsEditing(false);
     }
   };
 
   const handleDelete = async () => {
     try {
-      await deleteUser(userData._id);
+      await deleteUser(userId);
       toast.success("User deleted successfully");
       navigate("/login");
     } catch (error) {
@@ -105,7 +111,6 @@ const ViewProfile = () => {
               alt="User Profile"
               className="w-44 h-44 rounded-full shadow-md"
             />
-
           </div>
           <div>
             <p className="font-bold text-gray-600">Username</p>
@@ -185,8 +190,10 @@ const ViewProfile = () => {
             />
             <div className="flex justify-between">
               <Button
+                type="button"
                 onClick={handleDelete}
                 className="flex items-center space-x-2 bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600"
+                disabled={isSaving}
               >
                 <FaTrash />
                 <span>Delete</span>
@@ -194,9 +201,22 @@ const ViewProfile = () => {
               <Button
                 type="submit"
                 className="flex items-center space-x-2 bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600"
+                disabled={isSaving}
               >
-                <FaSave />
-                <span>Save</span>
+                {isSaving ? (
+                  <>
+                    <svg className="animate-spin h-5 w-5 mr-2 text-white" viewBox="0 0 24 24">
+                      <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" fill="none" />
+                      <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8z" />
+                    </svg>
+                    Saving...
+                  </>
+                ) : (
+                  <>
+                    <FaSave />
+                    <span>Save</span>
+                  </>
+                )}
               </Button>
             </div>
           </form>

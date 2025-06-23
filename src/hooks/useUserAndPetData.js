@@ -1,38 +1,18 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import axios from "axios";
-const API_BASE = import.meta.env. VITE_APP_API_BASE  ;
+import userContext from "../context/UserContext";
+const API_BASE = import.meta.env.VITE_APP_API_BASE;
 
 const useUserAndPetData = () => {
-  const [userData, setUserData] = useState({});
   const [pets, setPets] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
+  const authContext = useContext(userContext);
 
-  const fetchUser = async () => {
-    const token = localStorage.getItem("key");
-    if (!token) {
-      console.error("Token not found in local storage");
-      setError("Token not found in local storage");
-      return;
-    }
-    setIsLoading(true);
-    try {
-      const response = await axios.get(
-        `${API_BASE}/api/users/token/${token}`,
-        { headers: { Authorization: token } }
-      );
-      if (response.data) {
-        setUserData(response.data);
-      }
-    } catch (error) {
-      console.error("Error fetching user data:", error);
-      setError(error.message);
-    } finally {
-      setIsLoading(false);
-    }
-  };
+  const userId = authContext?.userData?._id;
 
-  const fetchPets = async (userId) => {
+  const fetchPets = async () => {
+    if (!userId) return;
     setIsLoading(true);
     try {
       const token = localStorage.getItem("key");
@@ -52,16 +32,11 @@ const useUserAndPetData = () => {
   };
 
   useEffect(() => {
-    fetchUser();
-  }, []);
+    fetchPets();
+    // eslint-disable-next-line
+  }, [userId]);
 
-  useEffect(() => {
-    if (userData && userData._id) {
-      fetchPets(userData._id);
-    }
-  }, [userData]);
-
-  return { userData, pets, isLoading, error };
+  return { pets, isLoading, error, refetchPets: fetchPets };
 };
 
 export default useUserAndPetData;

@@ -1,48 +1,28 @@
-import React, { useEffect, useState, useCallback } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import logo from "../../assets/logo.png";
 import defaultProfile from "../../assets/profilePicture.jpg";
-import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import { toast } from "sonner";
 import { FaBars } from "react-icons/fa";
-
-const API_BASE = import.meta.env. VITE_APP_API_BASE  ;
+import userContext from "../../context/UserContext";
 
 const Navbar = ({ onMenuClick }) => {
   const [isLogin, setIsLogin] = useState(false);
   const [profilePicture, setProfilePicture] = useState(defaultProfile);
   const [username, setUsername] = useState("");
   const navigate = useNavigate();
-
-  const fetchUser = useCallback(async () => {
-    const token = localStorage.getItem("key");
-    if (!token) {
-      setIsLogin(false);
-      setProfilePicture(defaultProfile);
-      setUsername("");
-      return;
-    }
-
-    try {
-      const { data } = await axios.get(`${API_BASE}/api/users/token/${token}`, {
-        headers: { Authorization: `${token}` },
-      });
-      setProfilePicture(data.profilePicture || defaultProfile);
-      setUsername(data.username || "User");
-      setIsLogin(true);
-    } catch (error) {
-      setIsLogin(false);
-      setProfilePicture(defaultProfile);
-      setUsername("");
-      toast.error("Session expired. Please log in again.");
-      navigate("/login");
-      localStorage.removeItem("key");
-    }
-  }, [navigate]);
+  const authContext = useContext(userContext);
 
   useEffect(() => {
-    fetchUser();
-  }, [fetchUser]);
+    if (authContext?.userData?._id) {
+      setIsLogin(true);
+      setProfilePicture(authContext.userData.profilePicture || defaultProfile);
+      setUsername(authContext.userData.username || "User");
+    } else {
+      setIsLogin(false);
+      setProfilePicture(defaultProfile);
+      setUsername("");
+    }
+  }, [authContext?.userData?._id, authContext?.userData?.profilePicture, authContext?.userData?.username]);
 
   return (
     <div className="bg-gray-900 text-slate-100 shadow-md w-full">

@@ -8,7 +8,7 @@ const PetAppHero = () => {
   const navigate = useNavigate();
 
   return (
-    <section className="relative w-full overflow-hidden bg-white dark:bg-black">
+    <section className="relative w-full overflow-hidden dark:bg-black bg-[#355c7d] ">
       {/* Background Image */}
       <img
         src={heroImage}

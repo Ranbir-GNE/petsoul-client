@@ -18,16 +18,13 @@ const Landing = () => {
         </section>
 
         <section>
-          <ScrollAnimation />
+          <OurMission />
         </section>
 
         <section>
           <InfiniteCards />
         </section>
 
-        <section>
-          <OurMission />
-        </section>
       </div>
     </>
   );

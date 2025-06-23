@@ -62,7 +62,7 @@ function App() {
         })
         .catch((err) => {
           console.error("Failed to auto-login:", err);
-          localStorage.removeItem("key"); // Clear invalid token
+          localStorage.removeItem("key"); 
         })
         .finally(() => {
           setIsAuthLoading(false);

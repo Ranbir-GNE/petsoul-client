@@ -1,14 +1,13 @@
 import React from "react";
 import { Carousel, Card } from "@/components/ui/apple-cards-carousel";
-import chatBot from "../../assets/chatBot.png";
 import petTraining from "../../assets/petTraining.jpg";
-import petVaccination from "../../assets/petVaccinations.jpg";
-import petHealthRecord from "../../assets/petHealthRecord.jpg";
-import petHealthReports from "../../assets/petHealthReports.jpg";
-import petPersonalProfile from "../../assets/petPersonalProfile.jpg";
-import petHealthChart from "../../assets/petHealthChart.jpg";
-import petAIChatbot from "../../assets/petAIChatbot.png";
 import petPersonalProfile1 from "../../assets/petPersonalProfile1.jpg";
+import personalisedPet from "../../assets/personalised_pet.webp";
+import petChart from "../../assets/pet_charts.avif";
+import petHealth from "../../assets/pet_health.webp";
+import petRecords from "../../assets/pet_records.jpeg";
+import petVaccination from "../../assets/pet_vaccine.webp";
+import petChatBot from "../../assets/pet_chatbot.jpg";
 
 const AppleCarousel = () => {
   const cards = data.map((card, index) => (
@@ -53,7 +52,7 @@ const DummyContent1 = () => {
               alt={sampleData[index].imgAlt}
               height="500"
               width="500"
-              className="md:w-1/2 md:h-1/2 h-full w-full mx-auto object-contain"
+              className="md:w-1/2 md:h-1/2 h-full w-full mx-auto inset-0 object-cover"
             />
           </div>
         );
@@ -64,21 +63,158 @@ const DummyContent1 = () => {
 const DummyContent2 = () => {
   return (
     <>
-      {[...new Array(3)].map((_, index) => {
+      {[...new Array(1)].map((_, index) => {
         const sampleData = [
           {
-            text: "Dashboard helps to glance through the trends of vitals of your pets in a graphical representation.",
-            imgSrc: petTraining,
+            text: "Dashboard helps to glance through the trends of vitals like temperature, heart rate, blood pressure and more of your pets in a graphical representation.",
+            imgSrc: petPersonalProfile1,
             imgAlt: "Macbook mockup from Aceternity UI",
           },
+        ];
+
+        return (
+          <div
+            key={"dummy-content" + index}
+            className="bg-[#F5F5F7] dark:bg-neutral-800 p-8 md:p-14 rounded-3xl mb-4"
+          >
+            <p className="text-neutral-600 dark:text-neutral-400 text-base md:text-2xl font-sans max-w-3xl mx-auto">
+              <span className="font-bold text-neutral-700 dark:text-neutral-200">
+                Create a individual personalised Profile for your pets.
+              </span>{" "}
+              {sampleData[index].text}
+            </p>
+            <img
+              src={sampleData[index].imgSrc}
+              alt={sampleData[index].imgAlt}
+              height="500"
+              width="500"
+              className="md:w-1/2 md:h-1/2 h-full w-full mx-auto object-contain"
+            />
+          </div>
+        );
+      })}
+    </>
+  );
+};
+const DummyContent3 = () => {
+  return (
+    <>
+      {[...new Array(1)].map((_, index) => {
+        const sampleData = [
           {
-            text: "Track various vitals like temperature, heart rate, blood pressure and more.",
-            imgSrc: petTraining,
+            text: "Create Health Reports for your pets' health checkup and access them anytime.",
+            imgSrc: petPersonalProfile1,
             imgAlt: "Macbook mockup from Aceternity UI",
           },
+        ];
+
+        return (
+          <div
+            key={"dummy-content" + index}
+            className="bg-[#F5F5F7] dark:bg-neutral-800 p-8 md:p-14 rounded-3xl mb-4"
+          >
+            <p className="text-neutral-600 dark:text-neutral-400 text-base md:text-2xl font-sans max-w-3xl mx-auto">
+              <span className="font-bold text-neutral-700 dark:text-neutral-200">
+                Create a individual personalised Profile for your pets.
+              </span>{" "}
+              {sampleData[index].text}
+            </p>
+            <img
+              src={sampleData[index].imgSrc}
+              alt={sampleData[index].imgAlt}
+              height="500"
+              width="500"
+              className="md:w-1/2 md:h-1/2 h-full w-full mx-auto object-contain"
+            />
+          </div>
+        );
+      })}
+    </>
+  );
+};
+
+const DummyContent4 = () => {
+  return (
+    <>
+      {[...new Array(1)].map((_, index) => {
+        const sampleData = [
           {
-            text: "The Charts are updated after every new report added.",
-            imgSrc: petTraining,
+            text: "Manage Full Medical Record for your pets to keep track of pet's health.",
+            imgSrc: petPersonalProfile1,
+            imgAlt: "Macbook mockup from Aceternity UI",
+          },
+        ];
+
+        return (
+          <div
+            key={"dummy-content" + index}
+            className="bg-[#F5F5F7] dark:bg-neutral-800 p-8 md:p-14 rounded-3xl mb-4"
+          >
+            <p className="text-neutral-600 dark:text-neutral-400 text-base md:text-2xl font-sans max-w-3xl mx-auto">
+              <span className="font-bold text-neutral-700 dark:text-neutral-200">
+                Create a individual personalised Profile for your pets.
+              </span>{" "}
+              {sampleData[index].text}
+            </p>
+            <img
+              src={sampleData[index].imgSrc}
+              alt={sampleData[index].imgAlt}
+              height="500"
+              width="500"
+              className="md:w-1/2 md:h-1/2 h-full w-full mx-auto object-contain"
+            />
+          </div>
+        );
+      })}
+    </>
+  );
+};
+
+const DummyContent5 = () => {
+  return (
+    <>
+      {[...new Array(1)].map((_, index) => {
+        const sampleData = [
+          {
+            text: "Ask your queries to our AI ChatBot curated through AI and multiple pet healthcare books.",
+            imgSrc: petPersonalProfile1,
+            imgAlt: "Macbook mockup from Aceternity UI",
+          },
+        ];
+
+        return (
+          <div
+            key={"dummy-content" + index}
+            className="bg-[#F5F5F7] dark:bg-neutral-800 p-8 md:p-14 rounded-3xl mb-4"
+          >
+            <p className="text-neutral-600 dark:text-neutral-400 text-base md:text-2xl font-sans max-w-3xl mx-auto">
+              <span className="font-bold text-neutral-700 dark:text-neutral-200">
+                Create a individual personalised Profile for your pets.
+              </span>{" "}
+              {sampleData[index].text}
+            </p>
+            <img
+              src={sampleData[index].imgSrc}
+              alt={sampleData[index].imgAlt}
+              height="500"
+              width="500"
+              className="md:w-1/2 md:h-1/2 h-full w-full mx-auto object-contain"
+            />
+          </div>
+        );
+      })}
+    </>
+  );
+};
+
+const DummyContent6 = () => {
+  return (
+    <>
+      {[...new Array(1)].map((_, index) => {
+        const sampleData = [
+          {
+            text: "Get Vaccination Records for your pets to keep track of pet's health.",
+            imgSrc: petPersonalProfile1,
             imgAlt: "Macbook mockup from Aceternity UI",
           },
         ];
@@ -110,42 +246,41 @@ const DummyContent2 = () => {
 
 const data = [
   {
-    category: "Personal Profile",
-    title: "Create a individual personalised Profile for your pets.",
-    src: petPersonalProfile,
+    category: "Personalisation",
+    title: "Personalised Pet Profile",
+    src: personalisedPet,
     content: <DummyContent1 />,
   },
   {
     category: "Ease of Use",
-    title:
-      "Glance thorugh the trends of vitals of your pets in a graphical representation.",
-    src: petHealthChart,
+    title:"Information Through Visualisation",
+    src: petChart,
     content: <DummyContent2 />,
   },
   {
     category: "Accessibility",
-    title: "Manage your pets Health Reports and access them anytime.",
-    src: petHealthReports,
-    content: <DummyContent1 />,
+    title: "Health Reports",
+    src: petHealth,
+    content: <DummyContent3 />,
   },
   {
     category: "Managability",
-    title: "Manage Medical Record for your pets to keep track of pet's health.",
-    src: petHealthRecord,
-    content: <DummyContent2 />,
+    title: "Health Records",
+    src: petRecords,
+    content: <DummyContent4 />,
   },
 
   {
-    category: "Product",
+    category: "Query",
     title:
-      "ChatBot curated through AI and multiple pet heathcare books answers all your queries.",
-    src: petAIChatbot,
-    content: <DummyContent1 />,
+      "AI ChatBot",
+    src: petChatBot,
+    content: <DummyContent5 />,
   },
   {
-    category: "Vaccinations",
-    title: "Vaccination record and reminders for your pet and timely updates.",
+    category: "Reminder",
+    title: "Vaccination Records",
     src: petVaccination,
-    content: <DummyContent2 />,
+    content: <DummyContent6 />,
   },
 ];
