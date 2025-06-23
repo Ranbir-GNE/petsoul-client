@@ -1,4 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import "react-tabs/style/react-tabs.css";
@@ -6,7 +7,6 @@ import ChartComponent from "./ChartComponent";
 import userPetContext from "../../context/UserPetContext";
 import defaultPet from "../../assets/cat.jpg";
 import userContext from "../../context/UserContext";
-
 const API_BASE = import.meta.env.VITE_APP_API_BASE;
 
 const Grid = () => {
@@ -20,6 +20,8 @@ const Grid = () => {
   const userPetData = useContext(userPetContext);
   const authContext = useContext(userContext);
   const userId = authContext.userData?._id;
+  const navigate = useNavigate();
+
 
   const fetchUserData = async () => {
     const token = localStorage.getItem("key");
@@ -133,8 +135,10 @@ const Grid = () => {
           <div className="bg-[#fffff0] rounded-lg shadow-md p-4 flex items-center justify-center space-x-3">
             <p className="text-sm font-medium text-slate-800">No pets found. Please add a pet.</p>
             <button
-              onClick={() => userPetData.setAddPet(true)}
-              className="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 transition"
+              onClick={() =>
+                navigate("/pets")
+              }
+              className="bg-blue-500 text-white px-2 py-1 rounded-lg hover:bg-white hover:text-blue-500 border transition"
             >
               Add Pet
             </button>
