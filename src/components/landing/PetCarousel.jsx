@@ -1,6 +1,5 @@
 import React from "react";
 import { Carousel, Card } from "@/components/ui/apple-cards-carousel";
-import petTraining from "../../assets/petTraining.jpg";
 import petPersonalProfile1 from "../../assets/petPersonalProfile1.jpg";
 import personalisedPet from "../../assets/personalised_pet.webp";
 import petChart from "../../assets/pet_charts.avif";

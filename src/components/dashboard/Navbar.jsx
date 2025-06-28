@@ -41,12 +41,12 @@ const Navbar = ({ onMenuClick }) => {
         {/* Right: Nav links */}
         <ul className="flex items-center space-x-6">
           <li>
-            <button className="hover:text-[#355c7d] transition-colors">
+            <button className="hover:text-[#355c7d] transition-colors" disabled={true}>
               Blogs
             </button>
           </li>
           <li>
-            <button className="hover:text-[#355c7d] transition-colors">
+            <button className="hover:text-[#355c7d] transition-colors" disabled={true}>
               Community
             </button>
           </li>
@@ -62,7 +62,7 @@ const Navbar = ({ onMenuClick }) => {
               </div>
             ) : (
               <button
-                className="bg-[#355c7d] hover:bg-[#2a4661] text-white px-4 py-1 rounded transition-colors"
+                className="bg-[#355c7d] hover:bg-white hover:text-[#355c7d] border text-white px-4 py-1 rounded transition-colors"
                 onClick={() => navigate("/login")}
               >
                 Login
