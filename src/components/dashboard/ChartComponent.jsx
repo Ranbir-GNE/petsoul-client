@@ -15,8 +15,8 @@ import {
 } from "chart.js";
 import axios from "axios";
 import LoadingSpinner from "./LoadingSpinner";
-const API_BASE = import.meta.env. VITE_APP_API_BASE  ;
 
+const API_BASE = import.meta.env.VITE_APP_API_BASE;
 
 ChartJS.register(
   CategoryScale,
@@ -43,7 +43,6 @@ const ChartComponent = () => {
         return;
       }
 
-      // Use Promise.all to collect results without mutating state in a loop
       const results = await Promise.all(
         userPetData.pets.map(async (pet) => {
           try {
@@ -63,23 +62,19 @@ const ChartComponent = () => {
               petInfo: response.data.petInfo,
             };
           } catch (error) {
-            console.error(
-              `Error fetching checkup data for pet ID ${pet._id}:`,
-              error.message
-            );
+            console.error(`Error fetching checkup data for pet ID ${pet._id}:`, error.message);
             return null;
           }
         })
       );
 
-      // Filter out nulls
       setCheckupData(results.filter(Boolean));
     } catch (error) {
       console.error("Error fetching checkup data:", error.message);
     } finally {
       setLoading(false);
     }
-  }
+  };
 
   useEffect(() => {
     if (userPetData.pets.length > 0) {
@@ -88,42 +83,34 @@ const ChartComponent = () => {
   }, [userPetData.pets]);
 
   const chartOptions = (label) => ({
-      responsive: true,
-      plugins: {
-        legend: { display: true, position: "top" },
-        title: { display: true, text: label },
-      },
-      scales: {
-        y: { beginAtZero: true },
-      },
-    });
+    responsive: true,
+    maintainAspectRatio: false,
+    plugins: {
+      legend: { display: true, position: "top" },
+      title: { display: true, text: label },
+    },
+    scales: {
+      y: { beginAtZero: true },
+    },
+  });
 
   const createChartData = (label, dataPoints, dates) => {
-    const chartColors = {
-      Temperature: "rgb(255, 99, 132)",
-      "Heart Rate": "rgb(54, 162, 235)",
-      "Respiratory Rate": "rgb(75, 192, 192)",
-      Weight: "rgb(153, 102, 255)",
-    };
-
-    const borderColors = {
-      Temperature: "rgba(255, 99, 132, 0.2)",
-      "Heart Rate": "rgba(54, 162, 235, 0.2)",
-      "Respiratory Rate": "rgba(75, 192, 192, 0.2)",
-      Weight: "rgba(153, 102, 255, 0.2)",
+    const colors = {
+      Temperature: ["rgb(255, 99, 132)", "rgba(255, 99, 132, 0.2)"],
+      "Heart Rate": ["rgb(54, 162, 235)", "rgba(54, 162, 235, 0.2)"],
+      "Respiratory Rate": ["rgb(75, 192, 192)", "rgba(75, 192, 192, 0.2)"],
+      Weight: ["rgb(153, 102, 255)", "rgba(153, 102, 255, 0.2)"],
     };
 
     return {
-      labels: dates.map((date) =>
-        date ? new Date(date).toLocaleDateString() : "N/A"
-      ),
+      labels: dates.map((date) => (date ? new Date(date).toLocaleDateString() : "N/A")),
       datasets: [
         {
           label,
           data: dataPoints || [],
           fill: false,
-          backgroundColor: chartColors[label] || "rgb(75, 192, 192)",
-          borderColor: borderColors[label] || "rgba(75, 192, 192, 0.2)",
+          backgroundColor: colors[label]?.[0] || "rgb(75, 192, 192)",
+          borderColor: colors[label]?.[1] || "rgba(75, 192, 192, 0.2)",
         },
       ],
     };
@@ -131,97 +118,95 @@ const ChartComponent = () => {
 
   if (loading) {
     return (
-      <div className="flex justify-center items-center h-full">
+      <div className="flex justify-center items-center min-h-[300px] sm:min-h-[500px]">
         <LoadingSpinner />
       </div>
     );
   }
 
   return (
-    <div className="p-4">
+    <div className="p-4 w-full">
       {checkupData.length > 0 ? (
-        <Tabs>
-          <TabList>
+        <div className="w-full overflow-x-auto">
+          <Tabs>
+            <TabList className="flex flex-wrap gap-2 mb-4 text-sm sm:text-base">
+              {checkupData.map((data, index) => (
+                <Tab key={index}>Name: {data.petInfo}</Tab>))}
+            </TabList>
+
             {checkupData.map((data, index) => (
-              <Tab key={index}>Name: {data.petInfo}</Tab>
-            ))}
-          </TabList>
+              <TabPanel key={index}>
+                {Array.isArray(data.checkupInfo) && data.checkupInfo.length > 0 ? (
+                  data.checkupInfo.map((checkup, checkupIndex) => {
+                    const vitalSigns = checkup.checkupInformation?.vitalSigns;
+                    const dates = checkup.checkupInformation?.dateOfCheckup;
 
-          {checkupData.map((data, index) => (
-            <TabPanel key={index}>
-              {Array.isArray(data.checkupInfo) &&
-                data.checkupInfo.length > 0 ? (
-                data.checkupInfo.map((checkup, checkupIndex) => {
-                  const vitalSigns = checkup.checkupInformation.vitalSigns;
-                  const dates = checkup.checkupInformation.dateOfCheckup;
+                    if (!vitalSigns || !dates) {
+                      return (
+                        <p key={checkupIndex} className="text-gray-600">
+                          Incomplete checkup information.
+                        </p>
+                      );
+                    }
 
-                  if (!vitalSigns || !dates) {
+                    const {
+                      temperature = [],
+                      heartRate = [],
+                      respiratoryRate = [],
+                      weight = [],
+                    } = vitalSigns;
+
                     return (
-                      <p key={checkupIndex} className="text-gray-600">
-                        Incomplete checkup information.
-                      </p>
+                      <div
+                        key={checkupIndex}
+                        className="mb-6 grid grid-cols-1 sm:grid-cols-2 gap-4"
+                      >
+                        <h4 className="text-md font-semibold mb-1 col-span-full">
+                          Checkup {checkupIndex + 1}
+                        </h4>
+
+                        {temperature.length > 0 && (
+                          <div className="w-full max-w-full overflow-x-auto mb-4 h-[250px]">
+                            <Line
+                              data={createChartData("Temperature", temperature, dates)}
+                              options={chartOptions("Temperature")}
+                            />
+                          </div>
+                        )}
+                        {heartRate.length > 0 && (
+                          <div className="w-full max-w-full overflow-x-auto mb-4 h-[250px]">
+                            <Line
+                              data={createChartData("Heart Rate", heartRate, dates)}
+                              options={chartOptions("Heart Rate")}
+                            />
+                          </div>
+                        )}
+                        {respiratoryRate.length > 0 && (
+                          <div className="w-full max-w-full overflow-x-auto mb-4 h-[250px]">
+                            <Line
+                              data={createChartData("Respiratory Rate", respiratoryRate, dates)}
+                              options={chartOptions("Respiratory Rate")}
+                            />
+                          </div>
+                        )}
+                        {weight.length > 0 && (
+                          <div className="w-full max-w-full overflow-x-auto mb-4 h-[250px]">
+                            <Line
+                              data={createChartData("Weight", weight, dates)}
+                              options={chartOptions("Weight")}
+                            />
+                          </div>
+                        )}
+                      </div>
                     );
-                  }
-
-                  const {
-                    temperature = [],
-                    heartRate = [],
-                    respiratoryRate = [],
-                    weight = [],
-                  } = vitalSigns;
-
-                  return (
-                    <div
-                      key={checkupIndex}
-                      className="mb-6 grid grid-cols-2 gap-2"
-                    >
-                      <h4 className="text-md font-semibold mb-1 col-span-2 ">
-                        Checkup {checkupIndex + 1}
-                      </h4>
-
-                      {temperature.length > 0 && (
-                        <div className="mb-4">
-                          <Line
-                            data={createChartData("Temperature", temperature, dates)}
-                            options={chartOptions("Temperature")}
-                          />
-                        </div>
-                      )}
-                      {heartRate.length > 0 && (
-                        <div className="mb-4">
-                          <Line
-                            data={createChartData("Heart Rate", heartRate, dates)}
-                            options={chartOptions("Heart Rate")}
-                          />
-                        </div>
-                      )}
-                      {respiratoryRate.length > 0 && (
-                        <div className="mb-4">
-                          <Line
-                            data={createChartData("Respiratory Rate", respiratoryRate, dates)}
-                            options={chartOptions("Respiratory Rate")}
-                          />
-                        </div>
-                      )}
-                      {weight.length > 0 && (
-                        <div className="mb-4">
-                          <Line
-                            data={createChartData("Weight", weight, dates)}
-                            options={chartOptions("Weight")}
-                          />
-                        </div>
-                      )}
-                    </div>
-                  );
-                })
-              ) : (
-                <p className="text-gray-600">
-                  No checkup information available.
-                </p>
-              )}
-            </TabPanel>
-          ))}
-        </Tabs>
+                  })
+                ) : (
+                  <p className="text-gray-600">No checkup information available.</p>
+                )}
+              </TabPanel>
+            ))}
+          </Tabs>
+        </div>
       ) : (
         <p className="text-gray-600">No pets found.</p>
       )}
