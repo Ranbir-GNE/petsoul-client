@@ -37,22 +37,17 @@ const Footer = () => {
               </ul>
               <ul className="flex space-x-4 mt-2">
                 <li>
-                  <a href="https://twitter.com/yourusername" target="_blank" rel="noopener noreferrer" aria-label="Twitter" className="hover:text-blue-400">
-                    <FaTwitter size={20} />
-                  </a>
-                </li>
-                <li>
-                  <a href="https://facebook.com/yourusername" target="_blank" rel="noopener noreferrer" aria-label="Facebook" className="hover:text-blue-600">
+                  <a href="https://www.facebook.com/ranbir.bhatia.311/" target="_blank" rel="noopener noreferrer" aria-label="Facebook" className="hover:text-blue-600">
                     <FaFacebook size={20} />
                   </a>
                 </li>
                 <li>
-                  <a href="https://instagram.com/yourusername" target="_blank" rel="noopener noreferrer" aria-label="Instagram" className="hover:text-pink-500">
+                  <a href="https://www.instagram.com/ranbir.1376/" target="_blank" rel="noopener noreferrer" aria-label="Instagram" className="hover:text-pink-500">
                     <FaInstagram size={20} />
                   </a>
                 </li>
                 <li>
-                  <a href="https://linkedin.com/in/yourusername" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" className="hover:text-blue-300">
+                  <a href="https://www.linkedin.com/in/ranbir-singh-907345261/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" className="hover:text-blue-300">
                     <FaLinkedin size={20} />
                   </a>
                 </li>
