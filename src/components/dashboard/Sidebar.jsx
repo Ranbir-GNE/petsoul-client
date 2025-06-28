@@ -1,5 +1,6 @@
-import React from "react";
+import { useContext } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
+import userContext from "../../context/UserContext";
 import {
   FaTachometerAlt,
   FaDog,
@@ -11,12 +12,14 @@ import {
 } from "react-icons/fa";
 
 const Sidebar = ({ closeSidebar }) => {
+  const authContext = useContext(userContext);
   const navigate = useNavigate();
   const location = useLocation();
 
   const handleLogout = () => {
     navigate("/");
     localStorage.removeItem("key");
+    authContext.setUserData(null);
   };
 
   const navItems = [
