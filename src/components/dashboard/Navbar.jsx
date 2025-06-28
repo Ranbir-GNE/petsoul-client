@@ -32,6 +32,7 @@ const Navbar = ({ onMenuClick }) => {
           <button
             className="text-slate-100 text-xl md:hidden"
             onClick={onMenuClick}
+            hidden={isLogin ? false : true}
           >
             <FaBars />
           </button>
