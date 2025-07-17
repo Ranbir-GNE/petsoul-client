@@ -1,6 +1,5 @@
 import React from "react";
 import { BackgroundLines } from "@/components/ui/background-lines";
-import { Button } from "@/components/ui/button";
 import heroImage from "../../assets/heroImage.png";
 import { useNavigate } from "react-router-dom";
 
@@ -38,14 +37,6 @@ const PetAppHero = () => {
           <p className="text-sm sm:text-base text-gray-100 dark:text-gray-300 mb-6">
             Join our community and access expert advice, tools, and support for a healthy and happy pet life.
           </p>
-
-          <Button
-            variant="primary"
-            className="w-full sm:w-auto px-6 py-3 text-base bg-green-500 hover:text shadow-md rounded-lg "
-            onClick={() => navigate("/login")}
-          >
-            Join Now
-          </Button>
         </div>
       </BackgroundLines>
     </section>
