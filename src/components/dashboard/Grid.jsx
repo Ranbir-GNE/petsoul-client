@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import { Tab, Tabs, TabList, TabPanel } from "../ui/tabs";
+import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import ChartComponent from "./ChartComponent";
 import userPetContext from "../../context/UserPetContext";
 import defaultPet from "../../assets/cat.jpg";

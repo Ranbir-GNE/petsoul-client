@@ -29,13 +29,6 @@ const Navbar = ({ onMenuClick }) => {
       <div className="flex justify-between items-center px-4 py-2">
         {/* Left: Hamburger and Logo */}
         <div className="flex items-center space-x-4">
-          <button
-            className="text-slate-100 text-xl md:hidden"
-            onClick={onMenuClick}
-            hidden={isLogin ? false : true}
-          >
-            <FaBars />
-          </button>
           <img src={logo} alt="logo" className="h-10 w-auto" />
         </div>
 

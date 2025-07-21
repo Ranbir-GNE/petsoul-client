@@ -11,7 +11,7 @@ import {
   FaSignOutAlt,
 } from "react-icons/fa";
 
-const Sidebar = ({ closeSidebar }) => {
+const Sidebar = () => {
   const authContext = useContext(userContext);
   const navigate = useNavigate();
   const location = useLocation();
@@ -31,26 +31,20 @@ const Sidebar = ({ closeSidebar }) => {
   ];
 
   return (
-    <div className="flex flex-col h-full bg-[#1a1a1a]/20 backdrop-blur-lg text-white w-64 rounded-lg ">
-      {/* Logo / Header */}
-      <div className="flex items-center justify-center p-4  ">
+    <div className="hidden md:flex flex-col h-full bg-[#1a1a1a]/20 backdrop-blur-lg text-white w-64 rounded-lg">
+      <div className="flex items-center justify-center p-4">
         <h1 className="text-xl font-bold text-white">Pet Care</h1>
       </div>
-
-      {/* Navigation Links */}
       <div className="flex-1 p-4">
         <ul className="space-y-4">
           {navItems.map((item) => (
             <li
               key={item.path}
               className={`flex items-center space-x-3 py-2 px-4 cursor-pointer transition ${location.pathname === item.path
-                ? "border-l-4 bg-[#1a1a1a]/50"
-                : "border-l-4 border-transparent hover:bg-[#1a1a1a]/30"
+                  ? "border-l-4 bg-[#1a1a1a]/50"
+                  : "border-l-4 border-transparent hover:bg-[#1a1a1a]/30"
                 }`}
-              onClick={() => {
-                navigate(item.path);
-                closeSidebar?.();
-              }}
+              onClick={() => navigate(item.path)}
             >
               <span className="text-white">{item.icon}</span>
               <span>{item.label}</span>
@@ -58,19 +52,14 @@ const Sidebar = ({ closeSidebar }) => {
           ))}
         </ul>
       </div>
-
-      {/* Profile and Logout */}
       <div className="p-4">
         <ul className="space-y-4">
           <li
             className={`flex items-center space-x-3 py-2 px-4 cursor-pointer transition ${location.pathname === "/profile"
-              ? "border-l-4 bg-[#1a1a1a]/50"
-              : "border-l-4 border-transparent hover:bg-[#1a1a1a]/30"
+                ? "border-l-4 bg-[#1a1a1a]/50"
+                : "border-l-4 border-transparent hover:bg-[#1a1a1a]/30"
               }`}
-            onClick={() => {
-              navigate("/profile");
-              closeSidebar?.();
-            }}
+            onClick={() => navigate("/profile")}
           >
             <FaUser className="text-white" />
             <span>Profile</span>

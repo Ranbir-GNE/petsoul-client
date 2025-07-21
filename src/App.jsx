@@ -93,7 +93,7 @@ function App() {
       </userPetContext.Provider>
       <Toaster />
       <Suspense fallback={null}>
-        <Chatbot />
+        {/* <Chatbot /> */}
       </Suspense>
     </>
   );
