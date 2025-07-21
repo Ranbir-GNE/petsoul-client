@@ -167,26 +167,26 @@ const ViewRecord = () => {
   if (error) return <div className="p-6 text-red-500">Error: {error}</div>;
 
   return (
-    <div className="p-4 space-y-6">
+    <div className="p-2 space-y-6">
       {/* Pets Grid */}
-      <div className="bg-white rounded-lg shadow-md p-6">
+      <div className=" p-6">
         <h2 className="text-2xl font-bold mb-6">Your Pets</h2>
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-4">
           {pets.map((pet) => (
             <div
               key={pet._id}
-              className="flex flex-col items-center space-y-2 bg-gray-100 bg-white shadow-md rounded-lg p-4 cursor-pointer hover:bg-gray-200 transition hover:scale-105 p-4 rounded-lg cursor-pointer hover:shadow-md"
+              className="flex text-white flex-col items-center space-y-2 bg-[#1a1a1a]/20 backdrop-blur-lg shadow-md rounded-lg p-4 cursor-pointer hover:bg-[#1a1a1a]/50 transition hover:scale-105 p-4 rounded-lg cursor-pointer hover:shadow-md"
               onClick={() => fetchPetRecord(pet._id)}
             >
               <img
                 src={pet.profilePicture || pet1}
                 alt={`${pet.name}'s profile`}
-                className="w-44 h-44 rounded-full object-cover shadow-md"
+                className="w-16 h-16 rounded-full object-cover shadow-md"
               />
               <p className="text-lg font-medium text-center">{pet.name}</p>
               <Button
                 size="sm"
-                className="bg-blue-500 hover:bg-blue-600 text-white"
+                className=" hover:bg-blue-600 text-white"
                 onClick={(e) => {
                   e.stopPropagation();
                   fetchPetRecord(pet._id);
@@ -201,7 +201,7 @@ const ViewRecord = () => {
       </div>
 
       {/* Health Record Display */}
-      <div className="bg-white rounded-lg shadow-md p-6">
+      <div className=" bg-[#1a1a1a]/20 backdrop-blur-lg rounded-lg shadow-md p-6">
         <div className="flex justify-between items-center mb-6">
           <h2 className="text-2xl font-bold">Health Record</h2>
           {selectedRecord && !isEditing && (

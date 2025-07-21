@@ -16,7 +16,7 @@ const HealthRecordPage = () => {
       <div className="text-center">
         <button
           onClick={handleToggleVisibility}
-          className="mb-4 p-2 bg-blue-500 text-white rounded hover:bg-white hover:text-blue-500 transition duration-300 hover:scale-105 focus:outline-none focus:ring-2 focus:ring-blue-300"
+          className="mb-4 p-2 bg-[#1a1a1a]/20 backdrop-blur-lg text-white rounded hover:bg-white hover:text-blue-500 transition duration-300 hover:scale-105 focus:outline-none focus:ring-2 focus:ring-blue-300"
         >
           {isVisible ? "Hide Record Form" : "Show Record Form"}
         </button>

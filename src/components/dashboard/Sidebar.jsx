@@ -31,10 +31,10 @@ const Sidebar = ({ closeSidebar }) => {
   ];
 
   return (
-    <div className="flex flex-col h-full bg-gray-900 text-white shadow-lg w-64">
+    <div className="flex flex-col h-full bg-[#1a1a1a]/20 backdrop-blur-lg text-white w-64 rounded-lg ">
       {/* Logo / Header */}
-      <div className="flex items-center justify-center p-4 bg-gray-800 border-b border-gray-700">
-        <h1 className="text-xl font-bold text-blue-400">Pet Care</h1>
+      <div className="flex items-center justify-center p-4  ">
+        <h1 className="text-xl font-bold text-white">Pet Care</h1>
       </div>
 
       {/* Navigation Links */}
@@ -43,16 +43,16 @@ const Sidebar = ({ closeSidebar }) => {
           {navItems.map((item) => (
             <li
               key={item.path}
-              className={`flex items-center space-x-3 py-2 px-4 rounded-lg cursor-pointer transition ${location.pathname === item.path
-                ? "bg-gray-800"
-                : "hover:bg-gray-800"
+              className={`flex items-center space-x-3 py-2 px-4 cursor-pointer transition ${location.pathname === item.path
+                ? "border-l-4 bg-[#1a1a1a]/50"
+                : "border-l-4 border-transparent hover:bg-[#1a1a1a]/30"
                 }`}
               onClick={() => {
                 navigate(item.path);
                 closeSidebar?.();
               }}
             >
-              <span className="text-blue-400">{item.icon}</span>
+              <span className="text-white">{item.icon}</span>
               <span>{item.label}</span>
             </li>
           ))}
@@ -60,26 +60,26 @@ const Sidebar = ({ closeSidebar }) => {
       </div>
 
       {/* Profile and Logout */}
-      <div className="p-4 border-t border-gray-700">
+      <div className="p-4">
         <ul className="space-y-4">
           <li
-            className={`flex items-center space-x-3 py-2 px-4 rounded-lg cursor-pointer transition ${location.pathname === "/profile"
-              ? "bg-gray-800"
-              : "hover:bg-gray-800"
+            className={`flex items-center space-x-3 py-2 px-4 cursor-pointer transition ${location.pathname === "/profile"
+              ? "border-l-4 bg-[#1a1a1a]/50"
+              : "border-l-4 border-transparent hover:bg-[#1a1a1a]/30"
               }`}
             onClick={() => {
               navigate("/profile");
               closeSidebar?.();
             }}
           >
-            <FaUser className="text-blue-400" />
+            <FaUser className="text-white" />
             <span>Profile</span>
           </li>
           <li
-            className="flex items-center space-x-3 py-2 px-4 rounded-lg hover:bg-gray-800 cursor-pointer transition"
+            className="flex items-center space-x-3 py-2 px-4 hover:border-l-4 hover:bg-[#E50000]/50 cursor-pointer transition"
             onClick={handleLogout}
           >
-            <FaSignOutAlt className="text-blue-400" />
+            <FaSignOutAlt className="text-white" />
             <span>Logout</span>
           </li>
         </ul>

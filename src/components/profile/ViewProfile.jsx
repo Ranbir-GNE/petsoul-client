@@ -97,7 +97,7 @@ const ViewProfile = () => {
           <h2 className="text-2xl font-bold">Profile</h2>
           <Button
             onClick={toggleEdit}
-            className="flex items-center space-x-2 bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-white hover:text-blue-500 border transition"
+            className="flex items-center space-x-2 bg-[#1a1a1a]/20 backdrop-blur-lg text-white px-4 py-2 rounded-md hover:bg-white hover:text-blue-500 border transition"
           >
             <FaEdit />
             <span>Edit</span>

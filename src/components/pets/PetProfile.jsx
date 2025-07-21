@@ -4,6 +4,7 @@ import { Button } from "../ui/button";
 import pet1 from "../../assets/pet1.jpg"; // Default pet image
 import { toast } from "sonner";
 import useUserAndPetData from "../../hooks/useUserAndPetData"; // Adjust the import path as needed
+import LoadingSpinner from "../dashboard/LoadingSpinner";
 const API_BASE = import.meta.env.VITE_APP_API_BASE;
 
 
@@ -58,7 +59,7 @@ const ViewPetProfile = () => {
   };
 
   if (isLoading) {
-    return <div>Loading...</div>;
+    return <LoadingSpinner />;
   }
 
   if (error) {
@@ -150,7 +151,7 @@ const ViewPetProfile = () => {
                 <div className="flex space-x-4">
                   <Button
                     onClick={handleEditPet}
-                    className="bg-blue-500 text-white hover:text-blue-500 hover:bg-white transition border border-blue-500"
+                    className="bg-[#1a1a1a]/20 backdrop-blur-lg text-white hover:text-blue-500 hover:bg-white transition border border-blue-500"
                   >
                     Save
                   </Button>
@@ -180,7 +181,7 @@ const ViewPetProfile = () => {
                 <div className="flex space-x-4">
                   <Button
                     onClick={() => setIsEditing(true)}
-                    className="bg-blue-500 text-white hover:text-blue-500 hover:bg-white transition border border-blue-500"
+                    className="bg-[#1a1a1a]/20 backdrop-blur-lg text-white hover:text-blue-500 hover:bg-white transition border border-blue-500"
                   >
                     Edit
                   </Button>

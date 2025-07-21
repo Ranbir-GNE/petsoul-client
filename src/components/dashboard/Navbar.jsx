@@ -25,7 +25,7 @@ const Navbar = ({ onMenuClick }) => {
   }, [authContext?.userData?._id, authContext?.userData?.profilePicture, authContext?.userData?.username]);
 
   return (
-    <div className="bg-gray-900 text-slate-100 shadow-md w-full">
+    <div className="bg-[#1a1a1a]/20 backdrop-blur-lg text-slate-100 shadow-md w-full rounded-full m-2">
       <div className="flex justify-between items-center px-4 py-2">
         {/* Left: Hamburger and Logo */}
         <div className="flex items-center space-x-4">
@@ -42,9 +42,9 @@ const Navbar = ({ onMenuClick }) => {
         {/* Right: Nav links */}
         <ul className="flex items-center space-x-6">
           <li>
-            <button className="hover:text-[#355c7d] transition-colors" disabled={true}>
+            {/* <button className="hover:text-[#355c7d] transition-colors" disabled={true}>
               Blogs
-            </button>
+            </button> */}
           </li>
           <li>
             <button className="hover:text-[#355c7d] transition-colors" disabled={true}>

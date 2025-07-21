@@ -133,7 +133,7 @@ const Lightbox = ({ vaccination, onClose, onEdit, onDelete }) => {
             <div className="flex space-x-4">
               <Button
                 onClick={() => setIsEditing(true)}
-                className="text-white bg-blue-500 hover:text-blue-500 hover:bg-white border"
+                className="text-white bg-[#1a1a1a]/20 backdrop-blur-lg hover:text-blue-500 hover:bg-white border"
               >
                 <FaEdit className="mr-2" />
                 Edit
@@ -255,7 +255,7 @@ const ViewVaccination = () => {
                   className="w-44 h-44 rounded-full object-cover shadow-md"
                 />
                 <p className="text-lg font-medium">{pet.name}</p>
-                <Button className="text-sm bg-blue-500 text-white px-3 py-1 rounded hover:bg-blue-600 transition">
+                <Button className="text-sm bg-[#1a1a1a]/20 backdrop-blur-lg text-white px-3 py-1 rounded hover:bg-blue-600 transition">
                   <FaSearch className="inline-block mr-2" />
                   View Vaccinations
                 </Button>

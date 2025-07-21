@@ -110,17 +110,17 @@ const Grid = () => {
   return (
     <div className="m-3 space-y-6 ">
       {/* Pets Grid */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
         {pets.map((pet, index) => (
           <div
             key={index}
-            className="bg-[#fffff0] rounded-lg shadow-md p-4 flex items-center justify-between space-x-3"
+            className="bg-[#1a1a1a]/20 backdrop-blur-lg rounded-lg shadow-md p-4 flex items-center justify-between space-x-3 text-sm text-white "
           >
             <div>
-              <p className="text-sm font-medium text-slate-800">Name: {pet.name}</p>
-              <p className="text-sm text-slate-700">Age: {pet.age}</p>
-              <p className="text-sm text-slate-700">Breed: {pet.breed}</p>
-              <p className="text-sm text-slate-700">Species: {pet.species}</p>
+              <p className=" font-medium">Name: {pet.name}</p>
+              <p >Age: {pet.age}</p>
+              <p >Breed: {pet.breed}</p>
+              <p >Species: {pet.species}</p>
             </div>
             <div>
               <img
@@ -132,13 +132,13 @@ const Grid = () => {
           </div>
         ))}
         {addPets && (
-          <div className="bg-[#fffff0] rounded-lg shadow-md p-4 flex items-center justify-center space-x-3">
+          <div className="bg-[#1a1a1a]/20 backdrop-blur-lg rounded-lg shadow-md p-4 flex items-center justify-center space-x-3">
             <p className="text-sm font-medium text-slate-800">No pets found. Please add a pet.</p>
             <button
               onClick={() =>
                 navigate("/pets")
               }
-              className="bg-blue-500 text-white px-2 py-1 rounded-lg hover:bg-white hover:text-blue-500 border transition"
+              className="bg-[#1a1a1a]/20 backdrop-blur-lg text-white px-2 py-1 rounded-lg hover:bg-white hover:text-blue-500 border transition"
             >
               Add Pet
             </button>
@@ -149,12 +149,12 @@ const Grid = () => {
       {/* Vaccination and Chart Section */}
       <div className="grid grid-cols-1 lg:grid-cols-4 gap-4">
         {/* Chart */}
-        <div className="bg-[#fffff0] p-4 rounded-lg shadow-md lg:col-span-3">
+        <div className="bg-[#1a1a1a]/20 backdrop-blur-lg p-4 rounded-lg shadow-md lg:col-span-3">
           <ChartComponent />
         </div>
 
         {/* Vaccination Details */}
-        <div className="bg-[#fffff0] p-3 rounded-lg shadow-md ">
+        <div className="bg-[#1a1a1a]/20 backdrop-blur-lg p-3 rounded-lg shadow-md ">
           <Tabs
             selectedIndex={tabIndex}
             onSelect={(index) => setTabIndex(index)}
