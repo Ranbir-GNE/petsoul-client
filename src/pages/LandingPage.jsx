@@ -5,8 +5,8 @@ import Footer from "@/components/dashboard/Footer";
 
 const LandingPage = () => {
   return (
-    <div className="flex flex-col min-h-screen bg-[#355c7d]">
-      <div className="h-16">
+    <div className="flex flex-col min-h-screen bg-black/90">
+      <div className="min-w-[1140px] mx-auto">
         <Navbar />
       </div>
 
@@ -14,7 +14,7 @@ const LandingPage = () => {
         <Landing />
       </div>
 
-      <div className="bg-gray-800 text-white p-4">
+      <div className="text-white pt-4">
         <Footer />
       </div>
     </div>

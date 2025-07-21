@@ -4,15 +4,14 @@ import heroImage from "../../assets/heroImage.png";
 import { useNavigate } from "react-router-dom";
 
 const PetAppHero = () => {
-  const navigate = useNavigate();
 
   return (
-    <section className="relative w-full overflow-hidden bg-[#355c7d] dark:bg-black">
+    <section className="relative w-full overflow-hidden bg-black">
       {/* Background Image */}
       <img
         src={heroImage}
         alt="Happy pets"
-        className="absolute inset-0 w-full h-full object-cover z-10 opacity-20"
+        className="absolute inset-0 w-full h-full object-cover z-10 opacity-20 rounded-lg"
       />
 
       {/* Foreground Content */}

@@ -69,11 +69,11 @@ const ViewPetProfile = () => {
   return (
     <div className="p-4 ">
       <h2 className="text-2xl font-bold mb-4">Pets</h2>
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-4">
         {pets.map((pet) => (
           <div
             key={pet._id}
-            className="bg-white shadow-md rounded-lg p-4 cursor-pointer hover:bg-gray-200 transition hover:scale-105"
+            className="bg-[#1a1a1a]/20 backdrop-blur-lg text-white shadow-md rounded-lg p-4 cursor-pointer hover:bg-[#1a1a1a]/50 transition hover:scale-105  "
             onClick={() => {
               setSelectedPet(pet);
               setEditedPet(pet); // Initialize the edit form with pet details
@@ -83,22 +83,22 @@ const ViewPetProfile = () => {
               <img
                 src={pet?.profilePicture || pet1}
                 alt="Pet Profile Picture"
-                className="w-44 h-44 rounded-full object-cover shadow-md"
+                className="w-16 h-16 rounded-full object-cover shadow-md"
               />
             </div>
             <div className="text-center">
               <h3 className="text-lg font-bold">{pet.name}</h3>
-              <p className="text-gray-600">Age: {pet.age} years</p>
-              <p className="text-gray-600">Breed: {pet.breed}</p>
-              <p className="text-gray-600">Species: {pet.species}</p>
+              <p >Age: {pet.age} years</p>
+              <p >Breed: {pet.breed}</p>
+              <p >Species: {pet.species}</p>
             </div>
           </div>
         ))}
       </div>
 
       {selectedPet && (
-        <div className="fixed inset-0 bg-black/70 flex items-center justify-center z-50 align-center">
-          <div className="bg-white p-8 w-full max-w-lg rounded-lg shadow-lg relative ">
+        <div className="fixed inset-0 bg-black/70 backdrop-blur-lg flex items-center justify-center z-50 align-center">
+          <div className="bg-white/80 backdrop-blur-lg p-8 w-full max-w-lg rounded-lg shadow-lg relative  ">
             <Button
               onClick={() => {
                 setSelectedPet(null);
@@ -151,7 +151,7 @@ const ViewPetProfile = () => {
                 <div className="flex space-x-4">
                   <Button
                     onClick={handleEditPet}
-                    className="bg-[#1a1a1a]/20 backdrop-blur-lg text-white hover:text-blue-500 hover:bg-white transition border border-blue-500"
+                    className="bg-green-600 backdrop-blur-lg text-white hover:bg-green-500 transition "
                   >
                     Save
                   </Button>
@@ -181,7 +181,7 @@ const ViewPetProfile = () => {
                 <div className="flex space-x-4">
                   <Button
                     onClick={() => setIsEditing(true)}
-                    className="bg-[#1a1a1a]/20 backdrop-blur-lg text-white hover:text-blue-500 hover:bg-white transition border border-blue-500"
+                    className="bg-yellow-600 text-white hover:bg-yellow-500 transition"
                   >
                     Edit
                   </Button>

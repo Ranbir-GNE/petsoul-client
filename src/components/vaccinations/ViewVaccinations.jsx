@@ -22,8 +22,8 @@ const Lightbox = ({ vaccination, onClose, onEdit, onDelete }) => {
   };
 
   return (
-    <div className="fixed inset-0 bg-black/70 flex items-center justify-center z-50 align-center">
-      <div className="bg-white p-6 rounded-lg shadow-lg max-w-lg w-full">
+    <div className="fixed inset-0 bg-black/70 backdrop-blur-lg flex items-center justify-center z-50 align-center">
+      <div className="bg-white/80 backdrop-blur-lg p-4 rounded-lg shadow-lg max-w-lg w-full">
         <div className="flex justify-between items-center mb-4">
           <h2 className="text-xl font-bold">
             {isEditing ? "Edit Vaccination" : "Vaccination Details"}
@@ -133,14 +133,14 @@ const Lightbox = ({ vaccination, onClose, onEdit, onDelete }) => {
             <div className="flex space-x-4">
               <Button
                 onClick={() => setIsEditing(true)}
-                className="text-white bg-[#1a1a1a]/20 backdrop-blur-lg hover:text-blue-500 hover:bg-white border"
+                className="text-white bg-yellow-600 hover:bg-yellow-500 transition"
               >
                 <FaEdit className="mr-2" />
                 Edit
               </Button>
               <Button
                 onClick={() => onDelete(vaccination._id)}
-                className="text-white bg-red-500 hover:text-red-500 hover:bg-white border"
+                className="text-white bg-red-600 hover:bg-red-500 transition "
               >
                 <FaTrash className="mr-2" />
                 Delete
@@ -235,24 +235,24 @@ const ViewVaccination = () => {
   return (
     <div className="relative flex flex-col p-4">
       {/* Pets Section */}
-      <div className="flex-1 p-6 bg-white rounded-lg shadow-md">
+      <div className="flex-1 p-4 ">
         <div className="flex justify-between items-center mb-6">
           <h2 className="text-2xl font-bold">Pets</h2>
         </div>
         {isLoadingPets ? (
           <p>Loading pets...</p>
         ) : (
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-4">
             {pets.map((pet) => (
               <div
                 key={pet._id}
-                className="flex flex-col items-center space-y-2 bg-gray-100 bg-white shadow-md rounded-lg p-4 cursor-pointer hover:bg-gray-200 transition hover:scale-105 p-4 rounded-lg cursor-pointer hover:shadow-md"
+                className="flex text-white flex-col items-center space-y-2 bg-[#1a1a1a]/20 backdrop-blur-lg shadow-md rounded-lg p-4 cursor-pointer hover:bg-[#1a1a1a]/50 transition hover:scale-105 p-4 rounded-lg cursor-pointer hover:shadow-md "
                 onClick={() => handlePetClick(pet._id)}
               >
                 <img
                   src={pet.profilePicture || "https://via.placeholder.com/150"}
                   alt={`${pet.name}'s profile`}
-                  className="w-44 h-44 rounded-full object-cover shadow-md"
+                  className="w-16 h-16 rounded-full object-cover shadow-md"
                 />
                 <p className="text-lg font-medium">{pet.name}</p>
                 <Button className="text-sm bg-[#1a1a1a]/20 backdrop-blur-lg text-white px-3 py-1 rounded hover:bg-blue-600 transition">
@@ -266,7 +266,7 @@ const ViewVaccination = () => {
       </div>
 
       {/* Vaccinations Section */}
-      <div className="flex-1 p-6 bg-white rounded-lg shadow-md mt-6">
+      <div className="flex-1 p-4 bg-[#1a1a1a]/20 backdrop-blur-lg rounded-lg shadow-md mt-6">
         <h2 className="text-2xl font-bold mb-4">Vaccinations</h2>
         {isLoadingVaccinations ? (
           <p>Loading vaccinations...</p>
@@ -275,7 +275,7 @@ const ViewVaccination = () => {
             {vaccinations.map((vaccination) => (
               <li
                 key={vaccination._id}
-                className="p-4 bg-gray-100 rounded-lg cursor-pointer hover:shadow-md transition-shadow"
+                className="p-4 rounded-lg cursor-pointer hover:shadow-md transition-shadow"
                 onClick={() => handleVaccinationClick(vaccination)}
               >
                 <p>

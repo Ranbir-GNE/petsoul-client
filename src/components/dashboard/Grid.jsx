@@ -1,8 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
-import "react-tabs/style/react-tabs.css";
+import { Tab, Tabs, TabList, TabPanel } from "../ui/tabs";
 import ChartComponent from "./ChartComponent";
 import userPetContext from "../../context/UserPetContext";
 import defaultPet from "../../assets/cat.jpg";
@@ -147,9 +146,9 @@ const Grid = () => {
       </div>
 
       {/* Vaccination and Chart Section */}
-      <div className="grid grid-cols-1 lg:grid-cols-4 gap-4">
+      <div className="grid grid-cols-1 lg:grid-cols-1 gap-4">
         {/* Chart */}
-        <div className="bg-[#1a1a1a]/20 backdrop-blur-lg p-4 rounded-lg shadow-md lg:col-span-3">
+        <div className="bg-white/80 backdrop-blur-lg p-4 rounded-lg shadow-md lg:col-span-1">
           <ChartComponent />
         </div>
 
@@ -176,12 +175,12 @@ const Grid = () => {
             </TabList>
             {pets.map((pet, index) => (
               <TabPanel key={index}>
-                <div className="p-2 bg-white rounded-md space-y-2">
+                <div className="p-2  rounded-md space-y-2">
                   {vaccinationData[pet._id]?.length ? (
                     vaccinationData[pet._id].map((record, idx) => (
                       <div
                         key={idx}
-                        className="border p-3 rounded-lg bg-gray-50 space-y-1"
+                        className=" p-3 rounded-lg bg-gray-50 space-y-1"
                       >
                         <p className="font-semibold text-slate-800">
                           {record.vaccineName}

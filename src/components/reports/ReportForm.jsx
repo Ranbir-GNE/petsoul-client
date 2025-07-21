@@ -157,7 +157,7 @@ const AddReportForm = ({ onSubmit }) => {
   return (
     <form
       onSubmit={handleSubmit}
-      className="space-y-6 max-w-screen-lg mx-auto p-6 bg-white"
+      className="space-y-6 max-w-screen-lg mx-auto p-6 bg-white/80 backdrop-blur-lg rounded-lg "
     >
       <h2 className="text-2xl font-semibold text-center mb-4">
         Add New Report

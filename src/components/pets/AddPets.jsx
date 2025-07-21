@@ -79,7 +79,7 @@ const AddPetForm = ({ onPetAdded }) => {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-4 max-w-md mx-auto p-4 bg-white rounded shadow">
+    <form onSubmit={handleSubmit} className="space-y-4 max-w-md mx-auto p-4 bg-white/80 backdrop-blur-lg rounded shadow">
       <h2 className="text-xl font-semibold text-center mb-2">Add New Pet</h2>
       <input
         type="text"
@@ -116,7 +116,7 @@ const AddPetForm = ({ onPetAdded }) => {
         type="file"
         name="profilePicture"
         onChange={handleChange}
-        className="w-full"
+        className="w-full border rounded p-2"
       />
       <input
         type="number"

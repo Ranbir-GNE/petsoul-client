@@ -4,7 +4,7 @@ const Footer = () => {
   const [collapsed, setCollapsed] = useState(true);
 
   return (
-    <footer className="bg-gray-800 text-[#fffff0] font-serif"> {/* Adjusted background and text color */}
+    <footer className="bg-[#1a1a1a]/20 backdrop-blur-lg rounded-t-lg text-[#fffff0]"> {/* Adjusted background and text color */}
       {/* Mobile Collapsible Footer */}
       <div className="md:hidden px-4 py-6"> {/* Added padding consistent with new footer */}
         <button
@@ -94,7 +94,7 @@ const Footer = () => {
             </div>
 
             {/* Newsletter (Mobile) */}
-            <div className="space-y-2">
+            {/* <div className="space-y-2">
               <h3 className="text-[#fffff0] tracking-wide text-xs">NEWSLETTER</h3>
               <p className="text-[#fffff0] text-xs leading-relaxed">Sign up for updates</p>
               <form className="flex items-center" onSubmit={(e) => e.preventDefault()}>
@@ -109,7 +109,7 @@ const Footer = () => {
                   <FaChevronRight size={18} weight="bold" />
                 </button>
               </form>
-            </div>
+            </div> */}
           </div>
         )}
       </div>
@@ -194,11 +194,22 @@ const Footer = () => {
                     <FaInstagram size={16} weight="fill" />
                   </a>
                 </li>
+                <li>
+                  <a
+                    href="https://peerlist.io/ranbir"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="Instagram"
+                    className="inline-flex items-center justify-center font-extrabold w-8 h-8 rounded-full bg-green-600 hover:bg-green-700 transition-colors hover:scale-95 transition-transform"
+                  >
+                    P
+                  </a>
+                </li>
               </ul>
             </div>
 
             {/* Newsletter */}
-            <div className="space-y-2">
+            {/* <div className="space-y-2">
               <h3 className="text-[#fffff0] tracking-wide">NEWSLETTER</h3>
               <p className="text-[#fffff0] text-xs leading-relaxed">Sign up for updates</p>
               <form className="flex items-center" onSubmit={(e) => e.preventDefault()}>
@@ -213,7 +224,7 @@ const Footer = () => {
                   <FaChevronRight size={18} weight="bold" />
                 </button>
               </form>
-            </div>
+            </div> */}
           </div>
         </div>
 

@@ -7,6 +7,7 @@ import userContext from "../../context/UserContext";
 import image from "../../assets/pet1.jpg";
 import { Input } from "../ui/input";
 const API_BASE = import.meta.env.VITE_APP_API_BASE;
+import background from "../../assets/picture2.png";
 
 const FormField = ({ label, type, ...props }) => {
   const [show, setShow] = useState(false);
@@ -144,8 +145,17 @@ const LoginRegister = () => {
   };
 
   return (
-    <div className="min-h-screen bg-black flex items-center justify-center">
-      <div className="w-full max-w-4xl p-4 bg-black border-2 border-slate-900 rounded-lg shadow-lg flex flex-col lg:flex-row mx-2 items-center">
+    <div className="min-h-screen flex items-center justify-center"
+      style={{
+        backgroundImage: `url(${background})`,
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+        backgroundRepeat: "no-repeat",
+        backgroundColor: "rgba(0,0,0,0.7)",
+        backgroundBlendMode: "darken"
+      }}
+    >
+      <div className="w-full max-w-4xl p-4 bg-black/20 backdrop-blur-lg rounded-lg inset-shadow-sm flex flex-col lg:flex-row mx-2 items-center">
         {/* Left Side - Form Section */}
         <div className="w-full lg:w-1/2 p-4">
           <div className="flex justify-around mb-6">
@@ -288,7 +298,7 @@ const LoginRegister = () => {
         </div>
 
         {/* Right Side - Image Section */}
-        <div className="hidden lg:flex w-1/2 p-6 bg-black items-center justify-center">
+        <div className="hidden lg:flex w-1/2 p-6 items-center justify-center">
           <img
             src={image}
             alt="diary"

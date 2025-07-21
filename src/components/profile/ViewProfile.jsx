@@ -92,12 +92,12 @@ const ViewProfile = () => {
   return (
     <div className="relative flex flex-col md:flex-row p-4 ">
       {/* Profile Details */}
-      <div className="flex-1 p-6 bg-[#fffff0] rounded-lg shadow-md">
+      <div className="flex-1 p-6 bg-white/80 backdrop-blur-lg rounded-lg shadow-md">
         <div className="flex justify-between items-center mb-6">
           <h2 className="text-2xl font-bold">Profile</h2>
           <Button
             onClick={toggleEdit}
-            className="flex items-center space-x-2 bg-[#1a1a1a]/20 backdrop-blur-lg text-white px-4 py-2 rounded-md hover:bg-white hover:text-blue-500 border transition"
+            className="flex items-center space-x-2 bg-yellow-600 text-white px-4 py-2 rounded-lg hover:bg-yellow-500  transition"
           >
             <FaEdit />
             <span>Edit</span>
@@ -144,7 +144,7 @@ const ViewProfile = () => {
       </div>
 
       {isEditing && (
-        <div className="fixed top-0 right-0 h-full w-full md:w-1/3 bg-[#fffff0] p-6 shadow-lg transform transition-transform duration-300 ease-in-out">
+        <div className="fixed top-0 right-0 h-full w-full md:w-1/3 bg-white/80 backdrop-blur-lg p-6 shadow-lg transform transition-transform duration-1000 ease-in-out">
           <div className="flex justify-between items-center mb-6">
             <h3 className="text-xl font-semibold">Edit Profile</h3>
             <Button
@@ -192,7 +192,7 @@ const ViewProfile = () => {
               <Button
                 type="button"
                 onClick={handleDelete}
-                className="flex items-center space-x-2 bg-red-500 text-white px-4 py-2 rounded-md hover:bg-white hover:text-red-500 transition-colors border"
+                className="flex items-center space-x-2 bg-red-600 text-white px-4 py-2 rounded-md hover:bg-red-500 transition-colors border"
                 disabled={isSaving}
               >
                 <FaTrash />

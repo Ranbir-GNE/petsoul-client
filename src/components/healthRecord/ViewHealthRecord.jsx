@@ -175,7 +175,7 @@ const ViewRecord = () => {
           {pets.map((pet) => (
             <div
               key={pet._id}
-              className="flex text-white flex-col items-center space-y-2 bg-[#1a1a1a]/20 backdrop-blur-lg shadow-md rounded-lg p-4 cursor-pointer hover:bg-[#1a1a1a]/50 transition hover:scale-105 p-4 rounded-lg cursor-pointer hover:shadow-md"
+              className="flex text-white flex-col items-center space-y-2 bg-[#1a1a1a]/20 backdrop-blur-lg shadow-md rounded-lg p-4 cursor-pointer hover:bg-[#1a1a1a]/50 transition hover:scale-105 p-4 rounded-lg cursor-pointer hover:shadow-md "
               onClick={() => fetchPetRecord(pet._id)}
             >
               <img
