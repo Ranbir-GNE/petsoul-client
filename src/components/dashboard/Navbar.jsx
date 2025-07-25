@@ -4,6 +4,7 @@ import defaultProfile from "../../assets/profilePicture.jpg";
 import { useNavigate } from "react-router-dom";
 import { FaBars } from "react-icons/fa";
 import userContext from "../../context/UserContext";
+import underconstruction from "../../assets/under_construction.gif";
 
 const Navbar = ({ onMenuClick }) => {
   const [isLogin, setIsLogin] = useState(false);
@@ -22,7 +23,11 @@ const Navbar = ({ onMenuClick }) => {
       setProfilePicture(defaultProfile);
       setUsername("");
     }
-  }, [authContext?.userData?._id, authContext?.userData?.profilePicture, authContext?.userData?.username]);
+  }, [
+    authContext?.userData?._id,
+    authContext?.userData?.profilePicture,
+    authContext?.userData?.username,
+  ]);
 
   return (
     <div className="bg-[#1a1a1a]/20 backdrop-blur-lg text-slate-100 shadow-md w-full rounded-full m-2">
@@ -30,8 +35,12 @@ const Navbar = ({ onMenuClick }) => {
         {/* Left: Hamburger and Logo */}
         <div className="flex items-center space-x-4">
           <img src={logo} alt="logo" className="h-10 w-auto" />
+          <img
+            src={underconstruction}
+            alt="under construction"
+            className="h-10 w-auto"
+          />
         </div>
-
         {/* Right: Nav links */}
         <ul className="flex items-center space-x-6">
           <li>
@@ -40,7 +49,10 @@ const Navbar = ({ onMenuClick }) => {
             </button> */}
           </li>
           <li>
-            <button className="hover:text-[#355c7d] transition-colors" disabled={true}>
+            <button
+              className="hover:text-[#355c7d] transition-colors"
+              disabled={true}
+            >
               Community
             </button>
           </li>
